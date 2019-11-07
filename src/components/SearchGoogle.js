@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import '../App.css';
 
 const API_KEY = "AIzaSyDzFrh_sw6E2iClTjBjWCGLApEW_d9xXZU";
 
@@ -7,7 +8,8 @@ class SearchGoogle extends Component {
     constructor(props){
         super(props);
         this.state = {
-            data: []
+            data: [],
+            checked: false
         }
     }
 
@@ -17,33 +19,35 @@ class SearchGoogle extends Component {
         // let queryurl = `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=010154474853921520295:rr3dcyakuje&q=`;
         // let url = queryurl + userInput;
 
-        const api_call = await fetch(`https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=010154474853921520295:rr3dcyakuje&q=${userInput}`)
-        const data = await api_call.json();
+        const req = await fetch(`https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=010154474853921520295:rr3dcyakuje&q=${userInput}`)
+        const data = await req.json();
 
-        let link = await data.items[0].displayLink;
-        let title = await data.items[0].title;
-        let snippet = await data.items[0].snippet;
-        console.log(link);
-        console.log(title);
-        console.log(snippet);
+        // let link = await data.items[0].displayLink;
+        // let title = await data.items[0].title;
+        // let snippet = await data.items[0].snippet;
+        // console.log(data);
+        // console.log(title);
+        // console.log(snippet);
 
         this.setState({
             data: data.items
         })
-
-
     }
 
     selectAll = () => {
-///=hellogit init
+        this.setState({
+            checked: true,
+    })
     }
     deselectAll = () => {
+        this.setState({
+            checked: false,
+        })
+    }
+
+    downloadFile = () => {
 
     }
-//gghghghghg
-    // downloadFile = () => {
-    //
-    // }
 
     render() {
         return (
@@ -71,19 +75,23 @@ class SearchGoogle extends Component {
                     </form>
                 </div>
 
-                <ul>
+                <div className="container">
+                    <div className="row">
+                        {this.state.data.map((data, i) => {
+                            return (
+                                <div className="col-md-4" style={{ border: "2px solid white", padding: "25px" }}>
+                                    <div key={i} className="box">
+                                        <input type="checkbox" name="check" checked={this.state.checked}/>
+                                        <p><h2>{data.title}</h2></p>
+                                        <p><a href={data.link}>{data.displayLink}</a></p>
+                                        <p>{data.snippet}</p>
+                                    </div>
+                                </div>
+                            )})}
+                        </div>
+                    </div>
+                </div>
 
-                    {this.state.data.map((data, i) => {
-                        return (
-                            <div key={i}>
-                                <p><h2>{data.title}</h2></p>
-                                <p><a href={data.link}>{data.displayLink}</a></p>
-                                <p>{data.snippet}</p>
-                            </div>
-                    )})}
-
-                </ul>
-            </div>
         );
     }
 }

@@ -93,6 +93,8 @@ class App extends React.Component {
                             <h2>{this.state.content}</h2>
                             <h2>{this.state.email ? <a href="mailto:aimeedu11@gmail.com?subject=Contact Developer"target="_blank">Contact Us</a> : null }</h2>
 
+
+
                         </div>
                     </div>
 
