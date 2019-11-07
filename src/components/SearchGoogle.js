@@ -18,20 +18,19 @@ class SearchGoogle extends Component {
         const userInput = e.target.elements.userInput.value;
         // let queryurl = `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=010154474853921520295:rr3dcyakuje&q=`;
         // let url = queryurl + userInput;
-
-        const req = await fetch(`https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=010154474853921520295:rr3dcyakuje&q=${userInput}`)
-        const data = await req.json();
-
+        if(userInput){
+            const req = await fetch(`https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=010154474853921520295:rr3dcyakuje&q=${userInput}`)
+            const data = await req.json();
+            this.setState({
+                data: data.items
+            })
+        }
         // let link = await data.items[0].displayLink;
         // let title = await data.items[0].title;
         // let snippet = await data.items[0].snippet;
         // console.log(data);
         // console.log(title);
         // console.log(snippet);
-
-        this.setState({
-            data: data.items
-        })
     }
 
     selectAll = () => {
