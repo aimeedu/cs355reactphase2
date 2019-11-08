@@ -9,43 +9,54 @@ class SearchGoogle extends Component {
         super(props);
         this.state = {
             data: [],
-            checked: false
+            checked: false,
         }
     }
 
     search = async (e) => {
         e.preventDefault();
         const userInput = e.target.elements.userInput.value;
-        // let queryurl = `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=010154474853921520295:rr3dcyakuje&q=`;
-        // let url = queryurl + userInput;
         if(userInput){
             const req = await fetch(`https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=010154474853921520295:rr3dcyakuje&q=${userInput}`)
             const data = await req.json();
+            console.log(data);
             this.setState({
                 data: data.items
             })
         }
-        // let link = await data.items[0].displayLink;
-        // let title = await data.items[0].title;
-        // let snippet = await data.items[0].snippet;
-        // console.log(data);
-        // console.log(title);
-        // console.log(snippet);
     }
 
     selectAll = () => {
         this.setState({
             checked: true,
-    })
+        })
     }
+
     deselectAll = () => {
         this.setState({
             checked: false,
         })
     }
 
-    downloadFile = () => {
+    // a controlled form handles all form changes via state, which is a very React way of doing things.
+    checkBox = () => {
+        this.setState({
+            checked: !this.state.checked,
+        })
+    }
 
+    //https://medium.com/@wlodarczyk_j/handling-multiple-checkboxes-in-react-js-337863fd284e
+    //https://stackoverflow.com/questions/55259173/react-handling-multiple-checkboxes
+    // https://codepen.io/anon/pen/wpjLdM?editors=1111
+    //working code for check box
+
+    // https://appdividend.com/2018/09/25/how-to-save-multiple-checkboxes-values-in-react-js/
+    //save for phase 3
+    downloadFile = async () => {
+    // the data has already stored in states, retrieve the data from this.state should work
+    //     const fileData = JSON.stringify(this.state.data);
+        console.log(this.state.data);
+        // const blob = new Blob([fileData], {type: "text/plain"});
     }
 
     render() {
@@ -78,11 +89,11 @@ class SearchGoogle extends Component {
                     <div className="row">
                         {this.state.data.map((data, i) => {
                             return (
-                                <div className="col-md-4" style={{ border: "2px solid white", padding: "25px" }}>
-                                    <div key={i} className="box">
-                                        <input type="checkbox" name="check" checked={this.state.checked}/>
-                                        <p><h2>{data.title}</h2></p>
-                                        <p><a href={data.link}>{data.displayLink}</a></p>
+                                <div key={i} className="col-md-4" style={{ border: "2px solid white", padding: "25px" }}>
+                                    <div className="box">
+                                        <input type="checkbox" name="check" checked={this.state.checked} onClick={this.checkBox}/>
+                                        <h2>{data.title}</h2>
+                                        <a href={data.link}>{data.displayLink}</a>
                                         <p>{data.snippet}</p>
                                     </div>
                                 </div>

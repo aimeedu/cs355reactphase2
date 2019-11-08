@@ -34,7 +34,7 @@ class FileInput extends React.Component {
             })
         };
 
-        // reader.readAsText(e.target.files[0])
+        reader.readAsText(e.target.files[0])
 
     }
 
