@@ -9,7 +9,7 @@ class SearchGoogle extends Component {
         super(props);
         this.state = {
             data: [],
-            checked: false,
+            checked: [],
         }
     }
 
@@ -19,10 +19,13 @@ class SearchGoogle extends Component {
         if(userInput){
             const req = await fetch(`https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=010154474853921520295:rr3dcyakuje&q=${userInput}`)
             const data = await req.json();
-            console.log(data);
+            // console.log(data);
             this.setState({
-                data: data.items
+                data: data.items,
+                checked: Array(data.items.length).fill(false),
             })
+            console.log(this.state.data);
+            console.log(this.state.checked);
         }
     }
 
@@ -40,8 +43,10 @@ class SearchGoogle extends Component {
 
     // a controlled form handles all form changes via state, which is a very React way of doing things.
     checkBox = () => {
+        const checked = this.state.checked;
+
         this.setState({
-            checked: !this.state.checked,
+            checked: !this.state.checked
         })
     }
 
@@ -49,9 +54,9 @@ class SearchGoogle extends Component {
     //https://stackoverflow.com/questions/55259173/react-handling-multiple-checkboxes
     // https://codepen.io/anon/pen/wpjLdM?editors=1111
     //working code for check box
-
     // https://appdividend.com/2018/09/25/how-to-save-multiple-checkboxes-values-in-react-js/
     //save for phase 3
+
     downloadFile = async () => {
     // the data has already stored in states, retrieve the data from this.state should work
     //     const fileData = JSON.stringify(this.state.data);
@@ -59,21 +64,29 @@ class SearchGoogle extends Component {
         // const blob = new Blob([fileData], {type: "text/plain"});
     }
 
+    delete = (event) => {
+        const index = event.target.dataset.index;
+        this.setState(state => {
+            const data = [...state.data]
+            data.splice(index, 1);
+            return{
+                data: data
+            }
+        })
+    }
+
     render() {
         return (
             <div>
-                <h4>Search with Google</h4>
+                <span><h2>Search with Google: You have {this.state.data.length} search results listed below</h2></span>
                 <form id="searchbar" className="search" onSubmit={this.search}>
                     <input type="text" placeholder="Google" name="userInput" />
                     <button id="submit" type="submit"> Search </button>
                 </form>
 
-                <div className="selectors">
+                <div className="download">
                     <button type="button" onClick={this.selectAll}> Select All </button>
                     <button type="button" onClick={this.deselectAll}> Deselect All </button>
-                </div>
-
-                <div className="download">
                     <form id="downloadFile" className="downloadFile" onSubmit={this.downloadFile}>
                         <button type="submit" name="f-download" id="download"> Download As </button>
                         <input type="text" id="fileName" placeholder="File Name" name="fileName" required="required"/>
@@ -91,16 +104,17 @@ class SearchGoogle extends Component {
                             return (
                                 <div key={i} className="col-md-4" style={{ border: "2px solid white", padding: "25px" }}>
                                     <div className="box">
-                                        <input type="checkbox" name="check" checked={this.state.checked} onClick={this.checkBox}/>
+                                        <input type="checkbox" name="check" checked={this.state.checked} onClick={(i) => this.checkBox(i)}/>
+                                        <button data-index={i} onClick={this.delete}> Delete </button>
                                         <h2>{data.title}</h2>
                                         <a href={data.link}>{data.displayLink}</a>
                                         <p>{data.snippet}</p>
                                     </div>
                                 </div>
                             )})}
-                        </div>
                     </div>
                 </div>
+            </div>
 
         );
     }
