@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../App.css';
+import Download from "./Download";
 
 const API_KEY = "AIzaSyDzFrh_sw6E2iClTjBjWCGLApEW_d9xXZU";
 
@@ -12,6 +13,27 @@ class SearchGoogle extends Component {
             checked: [],
         }
     }
+//todo: selectAll, deselectAll, checkbox
+    // selectAll = () => {
+    //     this.setState({
+    //         checked: true,
+    //     })
+    // }
+    //
+    // deselectAll = () => {
+    //     this.setState({
+    //         checked: false,
+    //     })
+    // }
+    //
+    // // a controlled form handles all form changes via state, which is a very React way of doing things.
+    // checkBox = () => {
+    //     const checked = this.state.checked;
+    //
+    //     this.setState({
+    //         checked: !this.state.checked
+    //     })
+    // }
 
     search = async (e) => {
         e.preventDefault();
@@ -29,40 +51,6 @@ class SearchGoogle extends Component {
         }
     }
 
-    selectAll = () => {
-        this.setState({
-            checked: true,
-        })
-    }
-
-    deselectAll = () => {
-        this.setState({
-            checked: false,
-        })
-    }
-
-    // a controlled form handles all form changes via state, which is a very React way of doing things.
-    checkBox = () => {
-        const checked = this.state.checked;
-
-        this.setState({
-            checked: !this.state.checked
-        })
-    }
-
-    //https://medium.com/@wlodarczyk_j/handling-multiple-checkboxes-in-react-js-337863fd284e
-    //https://stackoverflow.com/questions/55259173/react-handling-multiple-checkboxes
-    // https://codepen.io/anon/pen/wpjLdM?editors=1111
-    //working code for check box
-    // https://appdividend.com/2018/09/25/how-to-save-multiple-checkboxes-values-in-react-js/
-    //save for phase 3
-
-    downloadFile = async () => {
-    // the data has already stored in states, retrieve the data from this.state should work
-    //     const fileData = JSON.stringify(this.state.data);
-        console.log(this.state.data);
-        // const blob = new Blob([fileData], {type: "text/plain"});
-    }
 
     delete = (event) => {
         const index = event.target.dataset.index;
@@ -79,24 +67,13 @@ class SearchGoogle extends Component {
         return (
             <div>
                 <span><h2>Search with Google: You have {this.state.data.length} search results listed below</h2></span>
-                <form id="searchbar" className="search" onSubmit={this.search}>
+                <form className="search" onSubmit={this.search}>
                     <input type="text" placeholder="Google" name="userInput" />
-                    <button id="submit" type="submit"> Search </button>
+                    <button type="submit"> Search </button>
                 </form>
 
-                <div className="download">
-                    <button type="button" onClick={this.selectAll}> Select All </button>
-                    <button type="button" onClick={this.deselectAll}> Deselect All </button>
-                    <form id="downloadFile" className="downloadFile" onSubmit={this.downloadFile}>
-                        <button type="submit" name="f-download" id="download"> Download As </button>
-                        <input type="text" id="fileName" placeholder="File Name" name="fileName" required="required"/>
-                        <select name="options" id="fileType" required="required">
-                            <option value="JSON">.JSON</option>
-                            <option value="CSV">.CSV</option>
-                            <option value="XML">.XML</option>
-                        </select>
-                    </form>
-                </div>
+                {/*passing data as a property to child class*/}
+                <Download data={this.state.data}/>
 
                 <div className="container">
                     <div className="row">
@@ -104,7 +81,7 @@ class SearchGoogle extends Component {
                             return (
                                 <div key={i} className="col-md-4" style={{ border: "2px solid white", padding: "25px" }}>
                                     <div className="box">
-                                        <input type="checkbox" name="check" checked={this.state.checked} onClick={(i) => this.checkBox(i)}/>
+                                        <input type="checkbox" name="check" onClick={this.checkBox}/>
                                         <button data-index={i} onClick={this.delete}> Delete </button>
                                         <h2>{data.title}</h2>
                                         <a href={data.link}>{data.displayLink}</a>

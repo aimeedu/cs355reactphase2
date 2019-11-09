@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Download from "./Download";
 
 class FileInput extends React.Component {
     constructor(props) {
@@ -6,7 +7,6 @@ class FileInput extends React.Component {
         // this.fileInput = React.createRef();
         this.state = {
             data: [],
-
         }
     }
     delete = (event) => {
@@ -16,7 +16,6 @@ class FileInput extends React.Component {
             data.splice(index, 1);
             return{
                 data: data,
-
             }
         })
     }
@@ -43,19 +42,19 @@ class FileInput extends React.Component {
         const reader = new FileReader();
         reader.onload = async (e) => {
             const text = (e.target.result);
-            console.log(text);
+            // console.log(text);
             if (type == "json") {
                 // JSON.parse() take a json string and turn it into a json object.
                 let obj = JSON.parse(text);
                 this.setState({
                     data: obj.Result,
                 })
-                console.log(obj); // return a object { ... }
-                console.log(obj.Result); //return an array [{...}, {....}]
+                // console.log(obj); // return a object { ... }
+                // console.log(obj.Result); //return an array [{...}, {....}]
             }
             else if (type == "csv") {
                 const lines = text.split("\n");
-                console.log(lines);
+                // console.log(lines);
                 let csvData = [];
 
                 for (let i = 0; i<lines.length; i++){
@@ -91,26 +90,17 @@ class FileInput extends React.Component {
         reader.readAsText(e.target.files[0])
     }
 
+
+
     render() {
         return (
             <div>
                 <form>
-                    <input type="file"  accept=".xml,.json,.csv" onChange={this.showFile}/>
-                    <button type="button" onClick={this.selectAll}> Select All </button>
-                    <button type="button" onClick={this.deselectAll}> Deselect All </button>
+                    <input type="file" accept=".xml,.json,.csv" onChange={this.showFile}/>
                 </form>
 
-                <div className="download">
-                    <form id="downloadFile" className="downloadFile" onSubmit={this.downloadFile}>
-                        <button type="submit" name="f-download" id="download"> Download As </button>
-                        <input type="text" id="fileName" placeholder="File Name" name="fileName" required="required"/>
-                        <select name="options" id="fileType" required="required">
-                            <option value="JSON">.JSON</option>
-                            <option value="CSV">.CSV</option>
-                            <option value="XML">.XML</option>
-                        </select>
-                    </form>
-                </div>
+                {/*passing data as a property to child class*/}
+                <Download data={this.state.data}/>
 
                 <div className="container">
                     <div className="row">
@@ -118,6 +108,7 @@ class FileInput extends React.Component {
                             return (
                                 <div key={i} className="col-md-12" style={{ border: "2px solid white", padding: "25px" }}>
                                     <div className="box">
+                                        <input type="checkbox" name="check" onClick={this.checkBox}/>
                                         <button data-index={i} onClick={this.delete}> Delete </button>
                                         <h2>{data.title}</h2>
                                         <a href={data.url}>{data.url}</a>
