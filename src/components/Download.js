@@ -7,41 +7,59 @@ class Download extends Component {
         super(props);
     }
 
-    //https://medium.com/@wlodarczyk_j/handling-multiple-checkboxes-in-react-js-337863fd284e
-    //https://stackoverflow.com/questions/55259173/react-handling-multiple-checkboxes
-    // https://codepen.io/anon/pen/wpjLdM?editors=1111
-    //working code for check box
-    // https://appdividend.com/2018/09/25/how-to-save-multiple-checkboxes-values-in-react-js/
-    //save for phase 3
+    selectAll = () => {
+        const results = document.getElementsByClassName("checkbox");
+        for (let i = 0; i < results.length; i++) {
+            results[i].checked = true;
+        }
+        for (let i = 0; i< this.props.data.length; i++) {
+            this.props.data[i].isChecked = true;
+        }
+    }
 
-    // tocsv = (data) => {
-    //     let result = "";
-    //     for(let i = 0; i<data.length; i++) {
-    //         if (data[i].isChecked) {
-    //             let title = data[i].title;
-    //             let url = data[i].url;
-    //             let description = data[i].description;
-    //             result += (title + "," + url + "," + description + "\n");
-    //             result.trim();
-    //         }
-    //     }
-    //     return result;
-    // };
+    deselectAll = () => {
+        const results = document.getElementsByClassName("checkbox");
+        for (let i = 0; i < results.length; i++) {
+            results[i].checked = false;
+        }
+        for (let i = 0; i< this.props.data.length; i++) {
+            this.props.data[i].isChecked = false;
+        }
+    }
+
+    trimData = (data) => {
+        // copy the object array.
+        const arr = [...this.props.data];
+        let newArr = []
+        for (let i = 0; i< arr.length; i++) {
+            if(arr[i].isChecked) {
+                newArr.push({
+                    title:arr[i].title,
+                    url:arr[i].url,
+                    description:arr[i].description,
+                });
+            }}
+        return newArr;
+    }
 
     tocsv = (data) => {
         const csvRows = [];
         //get the headers
-        const headers = Object.keys(data[0]);
-        csvRows.push(headers.join(','));
+        if (data.length != 0){
+            const headers = Object.keys(data[0]);
+            csvRows.push(headers.join(','));
 
-        for (const row of data) {
-            const values = headers.map(header => {
-                const escaped = (''+row[header]).replace(/"/g, '\\"');
-                return `"${escaped}"`;
-            })
-            csvRows.push(values.join(','));
+            for (const row of data) {
+                const values = headers.map(header => {
+                    const escaped = (''+row[header]).replace(/"/g, '\\"');
+                    return `"${escaped}"`;
+                })
+                csvRows.push(values.join(','));
+            }
+            return csvRows.join('\n');
+        }else{
+            return csvRows;
         }
-        return csvRows.join('\n');
     }
 
     toxml = (data) => {
@@ -58,21 +76,6 @@ class Download extends Component {
         }
         result += "</results>";
         return result;
-    }
-
-    trimData = (data) => {
-        // copy the object array.
-        const arr = [...this.props.data];
-        let newArr = []
-        for (let i = 0; i< arr.length; i++) {
-                if(arr[i].isChecked) {
-                    newArr.push({
-                        title:arr[i].title,
-                        url:arr[i].url,
-                        description:arr[i].description,
-                    });
-            }}
-        return newArr;
     }
 
     download = (data, fileName, type) => {

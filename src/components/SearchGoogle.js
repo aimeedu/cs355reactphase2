@@ -81,21 +81,6 @@ class SearchGoogle extends Component {
         //     data
         // })
     }
-    selectAll = () => {
-        const results = document.getElementsByClassName("checkbox");
-        for (let i = 0; i < results.length; i++) {
-            results[i].checked = true;
-            console.log(results[i].checked);
-        }
-    }
-
-    deselectAll = () => {
-        const results = document.getElementsByClassName("checkbox");
-        for (let i = 0; i < results.length; i++) {
-            results[i].checked = false;
-            console.log(results[i].checked);
-        }
-    }
 
     render() {
         return (
@@ -111,8 +96,7 @@ class SearchGoogle extends Component {
                     <FormControl className="mr-sm-2" type="text" placeholder="Google" name="userInput"/>
                     <Button variant="outline-success" type="submit">Search</Button>
                 </Form>
-                <button id="selectall" className="btn btn-outline-danger" type="button" onClick={this.selectAll}>Select All</button>
-                <button id="deselectall" className="btn btn-outline-warning" type="button" onClick={this.deselectAll}>Deselect All</button>
+
                 {/*passing data as a property to child class*/}
                 <Download data={this.state.data} />
 

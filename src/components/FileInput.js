@@ -22,9 +22,7 @@ class FileInput extends React.Component {
     }
     // a controlled form handles all form changes via state, which is a very React way of doing things.
     checkBox = (event) => {
-
         const index = event.target.dataset.index;
-
         this.setState(state => {
             const data = [...state.data];
             const object = state.data[index];
@@ -40,21 +38,7 @@ class FileInput extends React.Component {
         //     data
         // })
     }
-    selectAll = () => {
-        const results = document.getElementsByClassName("checkbox");
-        for (let i = 0; i < results.length; i++) {
-            results[i].checked = true;
-            console.log(results[i].checked);
-        }
-    }
 
-    deselectAll = () => {
-        const results = document.getElementsByClassName("checkbox");
-        for (let i = 0; i < results.length; i++) {
-            results[i].checked = false;
-            console.log(results[i].checked);
-        }
-    }
     // uploadFile = (event) => {
     //     let file = event.target.files[0];
     //     console.log(file);
