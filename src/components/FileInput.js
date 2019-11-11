@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Download from "./Download";
+import './Components.css';
 
 class FileInput extends React.Component {
     constructor(props) {
@@ -18,6 +19,41 @@ class FileInput extends React.Component {
                 data: data,
             }
         })
+    }
+    // a controlled form handles all form changes via state, which is a very React way of doing things.
+    checkBox = (event) => {
+
+        const index = event.target.dataset.index;
+
+        this.setState(state => {
+            const data = [...state.data];
+            const object = state.data[index];
+            object.isChecked = !object.isChecked;
+            data.splice(index, 1, object);
+            return {
+                data
+            }
+        })
+
+        console.log(this.state.data);
+        // this.setState({
+        //     data
+        // })
+    }
+    selectAll = () => {
+        const results = document.getElementsByClassName("checkbox");
+        for (let i = 0; i < results.length; i++) {
+            results[i].checked = true;
+            console.log(results[i].checked);
+        }
+    }
+
+    deselectAll = () => {
+        const results = document.getElementsByClassName("checkbox");
+        for (let i = 0; i < results.length; i++) {
+            results[i].checked = false;
+            console.log(results[i].checked);
+        }
     }
     // uploadFile = (event) => {
     //     let file = event.target.files[0];
@@ -43,6 +79,7 @@ class FileInput extends React.Component {
         reader.onload = async (e) => {
             const text = (e.target.result);
             // console.log(text);
+            //todo: add isChecked
             if (type == "json") {
                 // JSON.parse() take a json string and turn it into a json object.
                 let obj = JSON.parse(text);
@@ -63,6 +100,7 @@ class FileInput extends React.Component {
                         title: arr[0],
                         url: arr[1],
                         description: arr[2],
+                        isChecked: false,
                     });
                 }
                 this.setState({
@@ -80,6 +118,7 @@ class FileInput extends React.Component {
                         title: doc.getElementsByTagName("title")[i].innerHTML,
                         url: doc.getElementsByTagName("url")[i].innerHTML,
                         description: doc.getElementsByTagName("description")[i].innerHTML,
+                        isChecked: false,
                     });
                 }
                 this.setState({
@@ -90,15 +129,11 @@ class FileInput extends React.Component {
         reader.readAsText(e.target.files[0])
     }
 
-
-
     render() {
         return (
             <div>
-                <form>
-                    <input type="file" accept=".xml,.json,.csv" onChange={this.showFile}/>
-                </form>
 
+                <input className="btn btn-outline-light search" type="file" accept=".xml,.json,.csv" onChange={this.showFile}/>
                 {/*passing data as a property to child class*/}
                 <Download data={this.state.data}/>
 
@@ -108,8 +143,8 @@ class FileInput extends React.Component {
                             return (
                                 <div key={i} className="col-md-12" style={{ border: "2px solid white", padding: "25px" }}>
                                     <div className="box">
-                                        <input type="checkbox" name="check" onClick={this.checkBox}/>
-                                        <button data-index={i} onClick={this.delete}> Delete </button>
+                                        <input data-index={i} className="checkbox" type="checkbox" name="check" onChange={this.checkBox}/>
+                                        <button className="btn btn-outline-primary" data-index={i} onClick={this.delete}> Delete </button>
                                         <h2>{data.title}</h2>
                                         <a href={data.url}>{data.url}</a>
                                         <p>{data.description}</p>

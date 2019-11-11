@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { NavDropdown } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import React from 'react';
-import '../App.css';
+// import '../App.css';
+import './Components.css';
 
 const Search = (props) => {
     return(

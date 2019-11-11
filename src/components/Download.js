@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './Components.css';
 
 class Download extends Component {
 
@@ -6,33 +7,26 @@ class Download extends Component {
         super(props);
     }
 
-    // selectAll = () => {
-    //     this.setState({
-    //         checked: true,
-    //     })
-    // }
-    //
-    // deselectAll = () => {
-    //     this.setState({
-    //         checked: false,
-    //     })
-    // }
-    //
-    // // a controlled form handles all form changes via state, which is a very React way of doing things.
-    // checkBox = () => {
-    //     const checked = this.state.checked;
-    //
-    //     this.setState({
-    //         checked: !this.state.checked
-    //     })
-    // }
-
     //https://medium.com/@wlodarczyk_j/handling-multiple-checkboxes-in-react-js-337863fd284e
     //https://stackoverflow.com/questions/55259173/react-handling-multiple-checkboxes
     // https://codepen.io/anon/pen/wpjLdM?editors=1111
     //working code for check box
     // https://appdividend.com/2018/09/25/how-to-save-multiple-checkboxes-values-in-react-js/
     //save for phase 3
+
+    // tocsv = (data) => {
+    //     let result = "";
+    //     for(let i = 0; i<data.length; i++) {
+    //         if (data[i].isChecked) {
+    //             let title = data[i].title;
+    //             let url = data[i].url;
+    //             let description = data[i].description;
+    //             result += (title + "," + url + "," + description + "\n");
+    //             result.trim();
+    //         }
+    //     }
+    //     return result;
+    // };
 
     tocsv = (data) => {
         const csvRows = [];
@@ -53,17 +47,33 @@ class Download extends Component {
     toxml = (data) => {
         let result = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<results>\n";
         for(let i = 0; i<data.length; i++) {
-            let title = data[i].title;
-            let url = data[i].url;
-            let description = data[i].description;
-            result = result + "<result>\n<title>" + title + "</title>\n" +
-                "<url>" + url + "</url>\n" + "<description>" +
-                description + "</description>\n</result>\n";
+
+                let title = data[i].title;
+                let url = data[i].url;
+                let description = data[i].description;
+                result = result + "  <result>\n    <title>" + title + "</title>\n" +
+                    "    <url>" + url + "</url>\n" + "    <description>" +
+                    description + "</description>\n  </result>\n";
+
         }
         result += "</results>";
         return result;
     }
 
+    trimData = (data) => {
+        // copy the object array.
+        const arr = [...this.props.data];
+        let newArr = []
+        for (let i = 0; i< arr.length; i++) {
+                if(arr[i].isChecked) {
+                    newArr.push({
+                        title:arr[i].title,
+                        url:arr[i].url,
+                        description:arr[i].description,
+                    });
+            }}
+        return newArr;
+    }
 
     download = (data, fileName, type) => {
         const file = new Blob([data], {type: type});
@@ -78,17 +88,19 @@ class Download extends Component {
         const input = e.target.elements.input.value;
         const fileType = e.target.elements.options.value;
         const fileName = input + fileType;
+        const trim = this.trimData(this.props.data);
 
         // the data has already been stored in states in parent class, retrieve the data from this.props.data
         if (fileType == ".csv") {
-            const data = this.tocsv(this.props.data);
+            const data = this.tocsv(trim);
             this.download(data, fileName, "text/csv");
         }
         else if (fileType == ".json") {
-            const data = JSON.stringify(this.props.data);
+            const data = JSON.stringify(trim);
+            // const data = this.tojson(this.props.data);
             this.download(data, fileName, "application/json");
         }else{
-            const data = this.toxml(this.props.data);
+            const data = this.toxml(trim);
             this.download(data, fileName, "text/xml");
         }
     }
@@ -97,15 +109,18 @@ class Download extends Component {
         return (
             <div>
                 <form className="downloadFile" onSubmit={this.downloadFile}>
-                    <button type="button" onClick={this.selectAll}> Select All </button>
-                    <button type="button" onClick={this.deselectAll}> Deselect All </button>
-                    <button type="submit"> Download As </button>
-                    <input type="text" id="fileName" placeholder="File Name" name="input" required="required"/>
-                    <select name="options" id="fileType" required="required">
-                        <option value=".json">.JSON</option>
-                        <option value=".csv">.CSV</option>
-                        <option value=".xml">.XML</option>
-                    </select>
+                    <div id="selector">
+                        <button id="selectall" className="btn btn-outline-primary" type="button" onClick={this.selectAll}>Select All</button>
+                        <button id="deselectall" className="btn btn-outline-primary" type="button" onClick={this.deselectAll}>Deselect All</button>
+                    </div>
+                        <button id="download" className="btn btn-light" type="submit">Download</button>
+                        <input id="fileName" className="form-control" type="text" placeholder="File Name" name="input" required="required"/>
+                        <select name="options" id="fileType" className="custom-select" required="required">
+                            <option value=".json">.JSON</option>
+                            <option value=".csv">.CSV</option>
+                            <option value=".xml">.XML</option>
+                        </select>
+
                 </form>
             </div>
         );

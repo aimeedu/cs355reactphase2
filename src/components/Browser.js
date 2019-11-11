@@ -1,7 +1,8 @@
 import { NavDropdown } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import '../App.css';
+// import '../App.css';
+import './Components.css';
 
 const Browser = (props) => {
         const nav = "App Name: " + window.navigator.appName + "\n"

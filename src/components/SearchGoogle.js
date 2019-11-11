@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import '../App.css';
+// import '../App.css';
+import './Components.css';
 import Download from "./Download";
+import {Button, Form, FormControl, Navbar} from "react-bootstrap";
 
 const API_KEY = "AIzaSyDzFrh_sw6E2iClTjBjWCGLApEW_d9xXZU";
 
@@ -10,51 +12,47 @@ class SearchGoogle extends Component {
         super(props);
         this.state = {
             data: [],
-            checked: [],
         }
     }
-//todo: selectAll, deselectAll, checkbox
-    // selectAll = () => {
-    //     this.setState({
-    //         checked: true,
-    //     })
-    // }
-    //
-    // deselectAll = () => {
-    //     this.setState({
-    //         checked: false,
-    //     })
-    // }
-    //
-    // // a controlled form handles all form changes via state, which is a very React way of doing things.
-    // checkBox = () => {
-    //     const checked = this.state.checked;
-    //
-    //     this.setState({
-    //         checked: !this.state.checked
-    //     })
-    // }
 
     search = async (e) => {
         e.preventDefault();
         const userInput = e.target.elements.userInput.value;
         if(userInput){
             const req = await fetch(`https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=010154474853921520295:rr3dcyakuje&q=${userInput}`)
+            // const data = await req.json();
             const data = await req.json();
-            // console.log(data);
+            const temp = data.items;
+
+            // temp.forEach(function (object) {
+            //     object.isChecked = false;
+            // });
+
+            let final = [];
+            for (let i = 0; i<temp.length; i++){
+                final.push({
+                    title: temp[i].title,
+                    url:temp[i].link,
+                    description:temp[i].snippet,
+                    isChecked: false,
+                });
+            }
+
             this.setState({
-                data: data.items,
-                checked: Array(data.items.length).fill(false),
+                data: final,
+                // checked: Array(data.items.length).fill(false),
             })
-            console.log(this.state.data);
-            console.log(this.state.checked);
+
+            console.log(final);
+            // console.log(this.state.data);
+            // console.log(this.state.checked);
         }
     }
-
 
     delete = (event) => {
         const index = event.target.dataset.index;
         this.setState(state => {
+            //make a copy of the data in the state.
             const data = [...state.data]
             data.splice(index, 1);
             return{
@@ -63,33 +61,79 @@ class SearchGoogle extends Component {
         })
     }
 
+    // a controlled form handles all form changes via state, which is a very React way of doing things.
+    checkBox = (event) => {
+
+        const index = event.target.dataset.index;
+
+        this.setState(state => {
+            const data = [...state.data];
+            const object = state.data[index];
+            object.isChecked = !object.isChecked;
+            data.splice(index, 1, object);
+            return {
+                data
+            }
+        })
+
+        console.log(this.state.data);
+        // this.setState({
+        //     data
+        // })
+    }
+    selectAll = () => {
+        const results = document.getElementsByClassName("checkbox");
+        for (let i = 0; i < results.length; i++) {
+            results[i].checked = true;
+            console.log(results[i].checked);
+        }
+    }
+
+    deselectAll = () => {
+        const results = document.getElementsByClassName("checkbox");
+        for (let i = 0; i < results.length; i++) {
+            results[i].checked = false;
+            console.log(results[i].checked);
+        }
+    }
+
     render() {
         return (
             <div>
-                <span><h2>Search with Google: You have {this.state.data.length} search results listed below</h2></span>
-                <form className="search" onSubmit={this.search}>
-                    <input type="text" placeholder="Google" name="userInput" />
-                    <button type="submit"> Search </button>
-                </form>
+                <h2>Search with Google: You have {this.state.data.length} search results.</h2>
 
+                {/*<form inline className="search" onSubmit={this.search}>*/}
+                {/*    <input className="form-control" type="text" placeholder="Google" name="userInput" />*/}
+                {/*    <button className="btn btn-light" type="submit"> Search </button>*/}
+                {/*</form>*/}
+
+                <Form inline className="search" onSubmit={this.search}>
+                    <FormControl className="mr-sm-2" type="text" placeholder="Google" name="userInput"/>
+                    <Button variant="outline-success" type="submit">Search</Button>
+                </Form>
+                <button id="selectall" className="btn btn-outline-danger" type="button" onClick={this.selectAll}>Select All</button>
+                <button id="deselectall" className="btn btn-outline-warning" type="button" onClick={this.deselectAll}>Deselect All</button>
                 {/*passing data as a property to child class*/}
-                <Download data={this.state.data}/>
+                <Download data={this.state.data} />
 
                 <div className="container">
-                    <div className="row">
+
                         {this.state.data.map((data, i) => {
                             return (
-                                <div key={i} className="col-md-4" style={{ border: "2px solid white", padding: "25px" }}>
-                                    <div className="box">
-                                        <input type="checkbox" name="check" onClick={this.checkBox}/>
-                                        <button data-index={i} onClick={this.delete}> Delete </button>
-                                        <h2>{data.title}</h2>
-                                        <a href={data.link}>{data.displayLink}</a>
-                                        <p>{data.snippet}</p>
+                                <div key={i} className="row">
+                                    <div className="col-sm-2"></div>
+                                    <div className="col-sm-8">
+                                        <div className="box">
+                                            <input data-index={i} className="checkbox" type="checkbox" name="check" onChange={this.checkBox}/>
+                                            <button className="btn btn-outline-primary" data-index={i} onClick={this.delete}> Delete </button>
+                                            <h4>{data.title}</h4>
+                                            <h5><a href={data.url}>{data.url}</a></h5>
+                                            <h5>{data.description}</h5>
+                                        </div>
                                     </div>
                                 </div>
                             )})}
-                    </div>
+
                 </div>
             </div>
 

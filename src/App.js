@@ -70,10 +70,10 @@ class App extends React.Component {
                                     <About onClick2={this.handleImgEmail} onClick={this.handleImg}/>
 
                                 </Nav>
-                                <Form inline>
-                                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                                    <Button variant="outline-success">Search</Button>
-                                </Form>
+                                {/*<Form inline>*/}
+                                {/*    <FormControl type="text" placeholder="Search" className="mr-sm-2" />*/}
+                                {/*    <Button variant="outline-success">Search</Button>*/}
+                                {/*</Form>*/}
                             </Navbar.Collapse>
                         </Navbar>
                         <br/>
