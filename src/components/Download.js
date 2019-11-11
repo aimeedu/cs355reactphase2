@@ -123,7 +123,6 @@ class Download extends Component {
                             <option value=".csv">.CSV</option>
                             <option value=".xml">.XML</option>
                         </select>
-
                 </form>
             </div>
         );

@@ -109,7 +109,7 @@ class SearchGoogle extends Component {
                                     <div className="col-sm-8">
                                         <div className="box">
                                             <input data-index={i} className="checkbox" type="checkbox" name="check" onChange={this.checkBox}/>
-                                            <button className="btn btn-outline-primary" data-index={i} onClick={this.delete}> Delete </button>
+                                            {/*<button className="btn btn-outline-primary" data-index={i} onClick={this.delete}> Delete </button>*/}
                                             <h4>{data.title}</h4>
                                             <h5><a href={data.url}>{data.url}</a></h5>
                                             <h5>{data.description}</h5>

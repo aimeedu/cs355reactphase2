@@ -6,9 +6,16 @@ h2 {
     margin: 7px;
 }
 
-h3, h4, h5 {
+h3, h4 {
     text-align: left;
+    color: mediumpurple;
 }
+
+h5 {
+    text-align: left;
+    color: lavenderblush;
+}
+
 
 .search, .downloadFile {
     /*text-align: center;*/

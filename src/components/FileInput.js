@@ -122,22 +122,24 @@ class FileInput extends React.Component {
                 <Download data={this.state.data}/>
 
                 <div className="container">
-                    <div className="row">
-                        {this.state.data.map((data, i) => {
-                            return (
-                                <div key={i} className="col-md-12" style={{ border: "2px solid white", padding: "25px" }}>
+                    {this.state.data.map((data, i) => {
+                        return (
+                            <div key={i} className="row">
+                                <div className="col-sm-2"></div>
+                                <div key={i} className="col-sm-8">
                                     <div className="box">
                                         <input data-index={i} className="checkbox" type="checkbox" name="check" onChange={this.checkBox}/>
-                                        <button className="btn btn-outline-primary" data-index={i} onClick={this.delete}> Delete </button>
-                                        <h2>{data.title}</h2>
-                                        <a href={data.url}>{data.url}</a>
-                                        <p>{data.description}</p>
+                                        {/*<button className="btn btn-outline-primary" data-index={i} onClick={this.delete}> Delete </button>*/}
+                                        <h3>{data.title}</h3>
+                                        <h4><a href={data.url}>{data.url}</a></h4>
+                                        <h5>{data.description}</h5>
                                     </div>
                                 </div>
-                            )})}
-                    </div>
+                            </div>
+                        )})}
                 </div>
             </div>
+
         )
     }
 }
