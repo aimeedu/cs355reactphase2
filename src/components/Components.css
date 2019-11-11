@@ -5,6 +5,20 @@ h2 {
     text-align: center;
     margin: 7px;
 }
+.purple-btn {
+    color: mediumpurple;
+    border: 1px solid mediumpurple;
+}
+.purple-btn:hover {
+    background-color: mediumpurple;
+    color: lavenderblush;
+    border: 1px solid mediumpurple;
+}
+
+#searchRes {
+    text-align: center;
+    color: mediumpurple;
+}
 
 h3, h4 {
     text-align: left;

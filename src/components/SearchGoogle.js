@@ -85,7 +85,9 @@ class SearchGoogle extends Component {
     render() {
         return (
             <div>
-                <h2>Search with Google: You have {this.state.data.length} search results.</h2>
+
+                <h2>Google Custom Search API</h2>
+                <h3 id="searchRes">You have {this.state.data.length} search results.</h3>
 
                 {/*<form inline className="search" onSubmit={this.search}>*/}
                 {/*    <input className="form-control" type="text" placeholder="Google" name="userInput" />*/}
@@ -94,7 +96,7 @@ class SearchGoogle extends Component {
 
                 <Form inline className="search" onSubmit={this.search}>
                     <FormControl className="mr-sm-2" type="text" placeholder="Google" name="userInput"/>
-                    <Button variant="outline-success" type="submit">Search</Button>
+                    <Button variant="btn-light purple-btn" type="submit">Search</Button>
                 </Form>
 
                 {/*passing data as a property to child class*/}

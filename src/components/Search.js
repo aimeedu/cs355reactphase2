@@ -9,11 +9,11 @@ const Search = (props) => {
     return(
         <div>
             <NavDropdown title="Search" id="search-dropdown">
-                <NavDropdown.Item>
-                    <NavLink to="/file" onClick={()=>props.onClick(null)}>Search from a file</NavLink>
+                <NavDropdown.Item href="/file">Search from a file
+                    {/*<NavLink to="/file" onClick={()=>props.onClick(null)}>Search from a file</NavLink>*/}
                 </NavDropdown.Item>
-                <NavDropdown.Item>
-                    <NavLink to="/google" onClick={()=>props.onClick(null)}>Google Search</NavLink>
+                <NavDropdown.Item href="/google">Google Search
+                    {/*<NavLink to="/google" onClick={()=>props.onClick(null)}>Google Search</NavLink>*/}
                 </NavDropdown.Item>
             </NavDropdown>
         </div>

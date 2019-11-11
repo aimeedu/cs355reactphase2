@@ -78,7 +78,7 @@ class App extends React.Component {
                         </Navbar>
                         <br/>
                         <Switch>
-                            <Route path="/" exact/>
+                            <Route path="/" exact />
                             <Route path="/file" exact component={FileInput}/>
                             <Route path="/google" exact component={SearchGoogle}/>
                         </Switch>
