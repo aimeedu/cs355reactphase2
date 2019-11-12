@@ -14,7 +14,7 @@ body {
 
 /*Change the background color of the <body> element to "lightblue" when the browser window is 600px wide or less:*/
 @media only screen and (max-width: 600px) {
-  .App {
+  body {
     background-color: lightblue;
   }
 }
