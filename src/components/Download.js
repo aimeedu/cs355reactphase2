@@ -30,13 +30,13 @@ class Download extends Component {
     trimData = (data) => {
         // copy the object array.
         const arr = [...this.props.data];
-        let newArr = []
+        let newArr = [];
         for (let i = 0; i< arr.length; i++) {
             if(arr[i].isChecked) {
                 newArr.push({
-                    title:arr[i].title,
-                    url:arr[i].url,
-                    description:arr[i].description,
+                    title:arr[i].title.trim(),
+                    url:arr[i].url.trim(),
+                    description:arr[i].description.trim(),
                 });
             }}
         return newArr;
@@ -61,6 +61,23 @@ class Download extends Component {
             return csvRows;
         }
     }
+
+    // toxml = (data) => {
+    //     let result = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<results>\n";
+    //     /* */
+    //     for(let i = 0; i<data.length; i++) {
+    //         if (data[i].isChecked) {
+    //             let title = data[i].title.trim();
+    //             let url = data[i].url.trim();
+    //             let description = data[i].description.trim();
+    //             result = result + "<result>\n<title>" + title + "</title>\n" +
+    //                 "<url>" + url + "</url>\n" + "<description>" +
+    //                 description + "</description>\n</result>\n";
+    //         }
+    //     }
+    //     result += "</results>";
+    //     return result.trim();
+    // };
 
     toxml = (data) => {
         let result = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<results>\n";
@@ -94,11 +111,11 @@ class Download extends Component {
         const trim = this.trimData(this.props.data);
 
         // the data has already been stored in states in parent class, retrieve the data from this.props.data
-        if (fileType == ".csv") {
+        if (fileType === ".csv") {
             const data = this.tocsv(trim);
             this.download(data, fileName, "text/csv");
         }
-        else if (fileType == ".json") {
+        else if (fileType === ".json") {
             const data = JSON.stringify(trim);
             // const data = this.tojson(this.props.data);
             this.download(data, fileName, "application/json");

@@ -13,7 +13,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <body className="App-body">
+                <div className="App-body">
                     <Router>
                         <MyNavbar/>
                         <Switch>
@@ -24,7 +24,7 @@ class App extends React.Component {
                             <Route path="/google" exact component={SearchGoogle}/>
                         </Switch>
                     </Router>
-                </body>
+                </div>
             </div>
         );
     }

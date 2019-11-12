@@ -6,7 +6,9 @@ import { LinkContainer } from 'react-router-bootstrap';
 const MyNavbar = (props) => {
     return (
         <Navbar collapseOnSelect="true" bg="light" variant="light" expand="lg">
-            <Navbar.Brand href="#home">CS355</Navbar.Brand>
+            <LinkContainer to="/">
+                <Navbar.Brand>CS355</Navbar.Brand>
+            </LinkContainer>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
