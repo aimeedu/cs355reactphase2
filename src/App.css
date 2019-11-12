@@ -1,14 +1,15 @@
-.App {
-  /*text-align: center;*/
+
+body {
   background-color: darkseagreen;
 }
 
-.App-header {
-  /*background-color: darkseagreen;*/
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+
+/*.App-header {*/
+/*  !*background-color: darkseagreen;*!*/
+/*  min-height: 100vh;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*}*/
 
 
 /*Change the background color of the <body> element to "lightblue" when the browser window is 600px wide or less:*/

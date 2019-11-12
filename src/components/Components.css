@@ -5,15 +5,23 @@ h2 {
     text-align: center;
     margin: 7px;
 }
-.purple-btn {
-    color: mediumpurple;
-    border: 1px solid mediumpurple;
+
+.level1 {
+    margin-top: 50px;
+    /*justify-content: center;*/
+    /*height: 10em;*/
+    /*display: flex;*/
+    /*align-items: center;*/
 }
-.purple-btn:hover {
-    background-color: mediumpurple;
-    color: lavenderblush;
-    border: 1px solid mediumpurple;
-}
+/*.purple-btn {*/
+/*    color: mediumpurple;*/
+/*    border: 1px solid mediumpurple;*/
+/*}*/
+/*.purple-btn:hover {*/
+/*    background-color: mediumpurple;*/
+/*    color: lavenderblush;*/
+/*    border: 1px solid mediumpurple;*/
+/*}*/
 
 #searchRes {
     text-align: center;

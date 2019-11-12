@@ -115,7 +115,7 @@ class FileInput extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="level1">
 
                 <input className="btn btn-outline-light search" type="file" accept=".xml,.json,.csv" onChange={this.showFile}/>
                 {/*passing data as a property to child class*/}

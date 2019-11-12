@@ -90,7 +90,7 @@
       <workItem from="1570106707994" duration="10447000" />
       <workItem from="1570132456818" duration="9792000" />
       <workItem from="1572981948540" duration="20813000" />
-      <workItem from="1573059152322" duration="98892000" />
+      <workItem from="1573059152322" duration="114368000" />
     </task>
     <servers />
   </component>
@@ -112,17 +112,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/App.js</url>
-          <line>93</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

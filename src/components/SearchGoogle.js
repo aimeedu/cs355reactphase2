@@ -84,10 +84,10 @@ class SearchGoogle extends Component {
 
     render() {
         return (
-            <div>
+            <div className="level1">
 
                 <h2>Google Custom Search API</h2>
-                <h3 id="searchRes">You have {this.state.data.length} search results.</h3>
+                {/*<h3 id="searchRes">You have {this.state.data.length} search results.</h3>*/}
 
                 {/*<form inline className="search" onSubmit={this.search}>*/}
                 {/*    <input className="form-control" type="text" placeholder="Google" name="userInput" />*/}
