@@ -1,6 +1,10 @@
 
 body {
-  background-color: darkseagreen;
+  background-image: url("img/snow2.jpg"), url("img/sky1.jpg");
+  background-color: lightblue;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 

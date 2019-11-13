@@ -45,11 +45,11 @@ const Browser = (props) => {
     return (
         <div className="level1">
             {
-            info == "navigator" ? <h2>{nav}</h2> :
-                info == "window" ? <h2>{win}</h2> :
-                    info == "screen" ? <h2>{scr}</h2> :
-                        info == "location" ? <h2>{loc}</h2> :
-                            info == "geolocation" ? <h2>latitude: {latitude}<br/>longitude: {longitude}<br/></h2>:
+            info === "navigator" ? <h2>{nav}</h2> :
+                info === "window" ? <h2>{win}</h2> :
+                    info === "screen" ? <h2>{scr}</h2> :
+                        info === "location" ? <h2>{loc}</h2> :
+                            info === "geolocation" ? <h2>latitude: {latitude}<br/>longitude: {longitude}<br/></h2>:
                                 null
             }
         </div>

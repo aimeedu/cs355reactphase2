@@ -1,3 +1,22 @@
+.myStyle{
+    background-color: transparent;
+    color: lavender;
+}
+
+.navbar-dark .navbar-brand {
+    color: lavenderblush;
+    font-size: x-large;
+}
+.navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show>.nav-link {
+    color: lavenderblush;
+    font-size: large;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: lavenderblush;
+    font-size: large;
+}
+
 h2 {
     padding: 7px;
     color: lavenderblush;
@@ -8,16 +27,17 @@ h2 {
 
 .level1 {
     margin-top: 80px;
+    /*text-align: center;*/
     /*justify-content: center;*/
     /*height: 10em;*/
     /*display: flex;*/
     /*align-items: center;*/
 }
+/*.purple-btn {*/
+/*    color: mediumpurple;*/
+/*    border: 1px solid mediumpurple;*/
+/*}*/
 .purple-btn {
-    color: mediumpurple;
-    border: 1px solid mediumpurple;
-}
-.purple-btn:hover {
     background-color: mediumpurple;
     color: lavenderblush;
     border: 1px solid mediumpurple;
@@ -28,9 +48,10 @@ h2 {
     color: mediumpurple;
 }
 
+
 h3, h4 {
     text-align: left;
-    color: mediumpurple;
+    color: #ffbf67;
 }
 
 h5 {
@@ -48,6 +69,14 @@ h5 {
     padding: 5px;
 }
 
+#searchBtn{
+    position: absolute;
+    display: inline-block;
+}
+
+.searchBar {
+    width: 100%;
+}
 
 #selector, #chooseFile{
     margin-right: auto;
@@ -64,22 +93,39 @@ h5 {
 }
 
 .col-sm-8 {
-    border: 2px solid white;
-    border-radius: 20px;
+    border: none;
+    /*border-radius: 20px;*/
     padding: 25px;
-
+    background: rgba(147, 157, 255, 0.2);;
 }
 
+h5 a {
+    color: #ffacb6;
+}
+h5 a:hover {
+    color: #5cc6e3;
+}
 
 h2 a {
     padding: 0px;
-    color: mediumpurple;
+    color: #ffd2bc;
     white-space: pre-line;
     text-align: center;
     /*border-style: wave;*/
-    border: 6px solid mediumpurple;
+    border: 6px solid #ffd2bc;
     border-radius: 20px;
     padding: 5px;
+}
+
+h2 a:hover{
+    text-decoration: none;
+    color: lightpink;
+    border: 7px solid lightpink;
+}
+
+.email{
+    margin-top: 190px;
+
 }
 
 #content-container{

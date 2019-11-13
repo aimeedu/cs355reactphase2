@@ -94,16 +94,19 @@ class SearchGoogle extends Component {
                 {/*    <button className="btn btn-light" type="submit"> Search </button>*/}
                 {/*</form>*/}
 
-                <Form inline className="search" onSubmit={this.search}>
-                    <FormControl className="mr-sm-2" type="text" placeholder="Google" name="userInput"/>
-                    <Button variant="btn-light purple-btn" type="submit">Search</Button>
+                <Form className="search" onSubmit={this.search}>
+                    <FormControl className="mr-sm-1 searchBar" type="text" placeholder="Google" name="userInput"/>
+                    <Button id="searchBtn" variant="btn btn-light purple-btn" type="submit">Search</Button>
                 </Form>
+                {/*<form className="search" onSubmit={this.search}>*/}
+                {/*    <input className="mr-sm-2 searchBar" type="text" placeholder="Google" name="userInput"/>*/}
+                {/*    <Button variant="btn-light purple-btn" type="submit">Search</Button>*/}
+                {/*</form>*/}
 
                 {/*passing data as a property to child class*/}
                 <Download data={this.state.data} />
 
                 <div className="container">
-
                         {this.state.data.map((data, i) => {
                             return (
                                 <div key={i} className="row">

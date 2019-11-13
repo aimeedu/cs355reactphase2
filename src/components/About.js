@@ -12,9 +12,9 @@ import {useParams} from 'react-router';
 const About = () => {
     const {msg} = useParams();
     return (
-        <div className="level1">
+        <div className="level1 email">
             {
-                msg == "contact" ?
+                msg === "contact" ?
                     <h2><a href="mailto:aimeedu11@gmail.com?subject=Contact Developer"target="_blank">Contact Us</a></h2>
                     : <h2>{ "{ Fengzhang Du }" } <br/> This is my first web page!</h2>
             }

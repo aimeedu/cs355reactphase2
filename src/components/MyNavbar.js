@@ -1,11 +1,12 @@
-import {Form, Navbar, Nav, Button, FormControl, NavDropdown} from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
+import './Components.css';
 
 const MyNavbar = (props) => {
     return (
-        <Navbar collapseOnSelect="true" bg="light" variant="light" expand="lg">
+        <Navbar collapseOnSelect="true" variant="dark" expand="lg" className="myStyle">
             <LinkContainer to="/">
                 <Navbar.Brand>CS355</Navbar.Brand>
             </LinkContainer>
