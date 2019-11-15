@@ -25,39 +25,30 @@ const MyNavbar = (props) => {
                     </NavDropdown>
 
                     <NavDropdown title="Search" id="search-dropdown">
-
                         <LinkContainer to="/file">
                             <NavDropdown.Item>Search from a file</NavDropdown.Item>
                         </LinkContainer>
-
                         <LinkContainer to="/google">
                             <NavDropdown.Item>Google Search</NavDropdown.Item>
                         </LinkContainer>
-
                     </NavDropdown>
 
                     <NavDropdown title="Browser" id="basic-nav-dropdown">
-
                         <LinkContainer to="/browser/navigator">
                             <NavDropdown.Item>Navigator</NavDropdown.Item>
                         </LinkContainer>
-
                         <LinkContainer to="/browser/window">
                             <NavDropdown.Item>Window</NavDropdown.Item>
                         </LinkContainer>
-
                         <LinkContainer to="/browser/screen">
                             <NavDropdown.Item>Screen</NavDropdown.Item>
                         </LinkContainer>
-
                         <LinkContainer to="/browser/location">
                             <NavDropdown.Item>Location</NavDropdown.Item>
                         </LinkContainer>
-
                         <LinkContainer to="/browser/geolocation">
                             <NavDropdown.Item>Geolocation</NavDropdown.Item>
                         </LinkContainer>
-
                     </NavDropdown>
 
                     <NavDropdown title="About" id="about-dropdown">
@@ -74,6 +65,9 @@ const MyNavbar = (props) => {
                 {/*    <FormControl type="text" placeholder="Search" className="mr-sm-2" />*/}
                 {/*    <Button variant="outline-success">Search</Button>*/}
                 {/*</Form>*/}
+                <LinkContainer to="/admin" className="btn btn--outline-light" id="admin">
+                    <Nav.Link>Admin</Nav.Link>
+                </LinkContainer>
             </Navbar.Collapse>
         </Navbar>
     );

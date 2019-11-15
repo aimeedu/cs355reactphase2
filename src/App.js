@@ -3,6 +3,7 @@ import React from 'react';
 import './App.css';
 import Browser from './components/Browser';
 import About from './components/About';
+import Admin from './components/Admin';
 import Home from './components/Home';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import SearchGoogle from "./components/SearchGoogle";
@@ -18,6 +19,7 @@ class App extends React.Component {
                         <MyNavbar/>
                         <Switch>
                             <Route path="/" exact component={Home}/>
+                            <Route path="/admin" exact component={Admin}/>
                             <Route path="/about/:msg" component={About}/>
                             <Route path="/browser/:info" exact component={Browser}/>
                             <Route path="/file" exact component={FileInput}/>

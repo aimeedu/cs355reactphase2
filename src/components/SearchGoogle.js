@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 // import '../App.css';
 import './Components.css';
 import Download from "./Download";
-import {Button, Form, FormControl, Navbar} from "react-bootstrap";
+import {Button, Form, FormControl} from "react-bootstrap";
 
 const API_KEY = "AIzaSyDzFrh_sw6E2iClTjBjWCGLApEW_d9xXZU";
 
