@@ -31,6 +31,9 @@ const MyNavbar = (props) => {
                         <LinkContainer to="/google">
                             <NavDropdown.Item>Google Search</NavDropdown.Item>
                         </LinkContainer>
+                        <LinkContainer to="/custom">
+                            <NavDropdown.Item>Custom Search Engine</NavDropdown.Item>
+                        </LinkContainer>
                     </NavDropdown>
 
                     <NavDropdown title="Browser" id="basic-nav-dropdown">

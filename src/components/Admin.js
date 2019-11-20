@@ -6,7 +6,7 @@ class Admin extends Component {
     render() {
         return (
             <div>
-                <h2>My Custom Search Engine</h2>
+                <h2>Indexing Launcher</h2>
 
                 <Form className="search" onSubmit>
                     <FormControl className="mr-sm-1 searchBar" type="text" placeholder="Type a URL to be indexed." name="userInput"/>
@@ -26,7 +26,8 @@ class Admin extends Component {
                     </thead>
                 </table>
 
-<br/>
+                <br/>
+                <h4>api call to the database, get those information then insert into table row using map function.</h4>
                 <h5>Admin: Indexing Launcher
                     This is an Admin screen in which the user can type/paste a URL to be indexed, passing it to the Indexing Engine mentioned above. <br/>
                     Alternatively, one can add an option to the previously created screens that for any search result in Phase 2, one clicks a button to index selected items.

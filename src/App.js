@@ -9,6 +9,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import SearchGoogle from "./components/SearchGoogle";
 import FileInput from "./components/FileInput";
 import MyNavbar from "./components/MyNavbar";
+import SearchEngine from "./components/SearchEngine";
 
 class App extends React.Component {
     render() {
@@ -24,6 +25,7 @@ class App extends React.Component {
                             <Route path="/browser/:info" exact component={Browser}/>
                             <Route path="/file" exact component={FileInput}/>
                             <Route path="/google" exact component={SearchGoogle}/>
+                            <Route path="/custom" exact component={SearchEngine}/>
                         </Switch>
                     </Router>
                 </div>
