@@ -1,6 +1,8 @@
 const {Client} = require("pg");
 const express = require("express");
 const app = express();
+
+// const router = require("express").Router;
 const port = process.env.PORT || 5000;
 //cors: cross origin resource sharing, allowed ajax request access resource from remote host.
 const cors = require('cors');
@@ -18,7 +20,7 @@ process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
 // Do not hard code your username and password.
 // Consider using Node environment variables.
-//password stored as environment variable.
+// password stored as environment variable.
 const PS = process.env.PS;
 
 const config = {
@@ -33,30 +35,44 @@ const client = new Client(config);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
-client.connect(err => {
-    if (err) throw err;
-    else {
-        queryDatabase();
-    }
-});
+// GET method route
+// respond with sth when a GET request is made to the homepage
+// actual end point is http://localhost:5000/admin
+app.get('/admin', function (req, res) {
+    // res.send('hello world');
 
-function queryDatabase() {
-    const insert = `
+    client.connect(err => {
+        if (err) throw err;
+        else {
+            queryDatabase();
+        }
+    });
+
+    function queryDatabase() {
+        const insert = `
         INSERT INTO word (wordname) VALUES ('Hello');
         INSERT INTO word (wordname) VALUES ('World');
         INSERT INTO page (url, title) VALUES ('test1.com', 'title');
     `;
-    const select = 'SELECT * FROM page;';
+        const select = `SELECT * FROM search;`;
 
-    client
-        .query(insert)
-        .then(() => {
-            console.log('Table created successfully!');
-            client.end(console.log('Closed client connection'));
-        })
-        .catch(err => console.log(err))
-        .then(() => {
-            console.log('Finished execution, exiting now');
-            process.exit();
-        });
-}
+        client
+            .query(select, (err, table) => {
+                // print the result form the selected table.
+                console.log(table);
+                res.send(table.rows);
+                client.end();
+            })
+        // .then(() => {
+        //     console.log('Table created successfully!');
+        //     client.end(console.log('Closed client connection'));
+        // // })
+        // // .catch(err => console.log(err))
+        // .then(() => {
+        //     console.log('Finished execution, exiting now');
+        //     process.exit();
+        // });
+    }
+
+})
+

@@ -3,12 +3,27 @@ import './Admin.css';
 import {Button, Form, FormControl} from "react-bootstrap";
 
 class Admin extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            results:[],
+        }
+    }
+
+    // make AJAX calls, query the data from the search table. http://localhost:3000/admin
+    componentDidMount() {
+        console.log('component has mounted.')
+        fetch('/admin')
+            .then(res => res.json())
+            .then(results => this.setState({results}, () => console.log('results fetched..', results)))
+    }
+
     render() {
         return (
             <div>
                 <h2>Indexing Launcher</h2>
 
-                <Form className="search" onSubmit>
+                <Form className="search">
                     <FormControl className="mr-sm-1 searchBar" type="text" placeholder="Type a URL to be indexed." name="userInput"/>
                     <Button id="searchBtn" variant="btn btn-light purple-btn" type="submit">Search</Button>
                 </Form>
