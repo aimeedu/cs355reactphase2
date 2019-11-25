@@ -6,27 +6,36 @@ class Admin extends Component {
     constructor(props){
         super(props);
         this.state = {
+            loading: true,
             results:[],
         }
     }
 
     // make AJAX calls, query the data from the search table. http://localhost:3000/admin
-    componentDidMount() {
-        console.log('component has mounted.')
-        fetch('/admin')
-            .then(res => res.json())
-            .then(results => this.setState({results}, () => console.log('results fetched..', results)))
+    async componentDidMount() {
+        console.log('component has mounted.');
+        const res = await fetch('/admin')
+        const data = await res.json();
+        const results = data;
+        this.setState({
+            results,
+            loading: false,
+        })
     }
+        //     fetch('/admin')
+    //         .then(res => res.json())
+    //         .then(results => this.setState({results, loading: true}, () => console.log('results fetched..', results)))
+    // }
 
     render() {
 
         const rows = this.state.results.map((result, i) => {
             return(
                 <tr key={i}>
-                    <td>{this.state.results.searchid}</td>
-                    <td>{this.state.results.terms}</td>
-                    <td>{this.state.results.count}</td>
-                    <td>{this.state.results.searchdate}</td>
+                    <td>{result.searchid}</td>
+                    <td>{result.terms}</td>
+                    <td>{result.count}</td>
+                    <td>{result.searchdate}</td>
                 </tr>
             )
         })
@@ -52,12 +61,12 @@ class Admin extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {rows}
+
+                    {rows}
                     </tbody>
                 </table>
-
                 <br/>
-                <h4>api call to the database, get those information then insert into table row using map function.</h4>
+
                 <h5>Admin: Indexing Launcher
                     This is an Admin screen in which the user can type/paste a URL to be indexed, passing it to the Indexing Engine mentioned above. <br/>
                     Alternatively, one can add an option to the previously created screens that for any search result in Phase 2, one clicks a button to index selected items.

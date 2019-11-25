@@ -28,6 +28,7 @@ h3, h4, li {
 
 table {
     margin: auto;
+    background: rgba(147, 157, 255, 0.4);
 }
 th, td {
     text-align: center;
