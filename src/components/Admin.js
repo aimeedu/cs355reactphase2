@@ -19,6 +19,18 @@ class Admin extends Component {
     }
 
     render() {
+
+        const rows = this.state.results.map((result, i) => {
+            return(
+                <tr key={i}>
+                    <td>{this.state.results.searchid}</td>
+                    <td>{this.state.results.terms}</td>
+                    <td>{this.state.results.count}</td>
+                    <td>{this.state.results.searchdate}</td>
+                </tr>
+            )
+        })
+
         return (
             <div>
                 <h2>Indexing Launcher</h2>
@@ -27,7 +39,7 @@ class Admin extends Component {
                     <FormControl className="mr-sm-1 searchBar" type="text" placeholder="Type a URL to be indexed." name="userInput"/>
                     <Button id="searchBtn" variant="btn btn-light purple-btn" type="submit">Search</Button>
                 </Form>
-<br/><br/>
+                <br/><br/>
                 <h3>User Search Histories</h3>
 
                 <table>
@@ -39,6 +51,9 @@ class Admin extends Component {
                             <th>Searching Time</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        {rows}
+                    </tbody>
                 </table>
 
                 <br/>

@@ -1,4 +1,4 @@
-const {Client} = require("pg");
+const {Pool, Client} = require("pg");
 const express = require("express");
 const app = express();
 
@@ -18,11 +18,8 @@ app.use(express.json());
 // disable Node from rejecting self-signed certificates by allowing ANY unauthorised certificate.
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
-// Do not hard code your username and password.
-// Consider using Node environment variables.
 // password stored as environment variable.
 const PS = process.env.PS;
-
 const config = {
     user: "pkgnjnqybwtacz",
     password: PS,
@@ -31,7 +28,7 @@ const config = {
     database: "d8qp223qobrp87",
     ssl: true
 }
-const client = new Client(config);
+const pool = new Pool(config);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
@@ -41,7 +38,7 @@ app.listen(port, () => console.log(`Server is running on port ${port}`));
 app.get('/admin', function (req, res) {
     // res.send('hello world');
 
-    client.connect(err => {
+    pool.connect(err => {
         if (err) throw err;
         else {
             queryDatabase();
@@ -56,22 +53,13 @@ app.get('/admin', function (req, res) {
     `;
         const select = `SELECT * FROM search;`;
 
-        client
+        pool
             .query(select, (err, table) => {
                 // print the result form the selected table.
                 console.log(table);
                 res.send(table.rows);
-                client.end();
+                // pool.end();
             })
-        // .then(() => {
-        //     console.log('Table created successfully!');
-        //     client.end(console.log('Closed client connection'));
-        // // })
-        // // .catch(err => console.log(err))
-        // .then(() => {
-        //     console.log('Finished execution, exiting now');
-        //     process.exit();
-        // });
     }
 
 })
