@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Download from "./Download";
 import './Components.css';
 
@@ -64,7 +64,7 @@ class FileInput extends React.Component {
             const text = (e.target.result);
             // console.log(text);
             //todo: add isChecked
-            if (type == "json") {
+            if (type === "json") {
                 // JSON.parse() take a json string and turn it into a json object.
                 let obj = JSON.parse(text);
                 this.setState({
@@ -73,7 +73,7 @@ class FileInput extends React.Component {
                 // console.log(obj); // return a object { ... }
                 // console.log(obj.Result); //return an array [{...}, {....}]
             }
-            else if (type == "csv") {
+            else if (type === "csv") {
                 const lines = text.split("\n");
                 // console.log(lines);
                 let csvData = [];

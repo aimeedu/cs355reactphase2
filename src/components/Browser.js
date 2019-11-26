@@ -40,7 +40,7 @@ const Browser = (props) => {
             + "GeoLocation latitude: "+ position.coords.latitude;
     }
 
-    const {latitude, longitude, error} = usePosition();
+    const {latitude, longitude} = usePosition();
 
     return (
         <div className="level1">

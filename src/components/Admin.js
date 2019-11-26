@@ -51,7 +51,7 @@ class Admin extends Component {
                 <br/><br/>
                 <h3>User Search Histories</h3>
 
-                <table>
+                <table className="">
                     <thead>
                         <tr>
                             <th>Search ID</th>

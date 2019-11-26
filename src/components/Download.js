@@ -3,9 +3,9 @@ import './Components.css';
 
 class Download extends Component {
 
-    constructor(props){
-        super(props);
-    }
+    // constructor(props){
+    //     super(props);
+    // }
 
     selectAll = () => {
         const results = document.getElementsByClassName("checkbox");
@@ -45,7 +45,7 @@ class Download extends Component {
     tocsv = (data) => {
         const csvRows = [];
         //get the headers
-        if (data.length != 0){
+        if (data.length !== 0){
             const headers = Object.keys(data[0]);
             csvRows.push(headers.join(','));
 

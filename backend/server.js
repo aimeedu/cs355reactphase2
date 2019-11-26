@@ -35,32 +35,47 @@ app.listen(port, () => console.log(`Server is running on port ${port}`));
 // GET method route
 // respond with sth when a GET request is made to the homepage
 // actual end point is http://localhost:5000/admin
-app.get('/admin', function (req, res) {
-    // res.send('hello world');
-
+app.get('/admin', (req, res) => {
     pool.connect(err => {
         if (err) throw err;
         else {
-            queryDatabase();
+            queryDB();
         }
     });
 
-    function queryDatabase() {
+    const queryDB = () => {
+        const select = `SELECT * FROM search;`;
+        pool
+            .query(select, (err, table) => {
+                // print the result form the selected table.
+                // console.log(table);
+                res.send(table.rows);
+                // pool.end();
+            })
+    }
+})
+
+// web crawler data insert to DB using post or put method.
+app.post('/someurl', (req, res) => {
+    pool.connect(err => {
+        if (err) throw err;
+        else {
+            insertDB();
+        }
+    })
+    const insertDB = () => {
         const insert = `
         INSERT INTO word (wordname) VALUES ('Hello');
         INSERT INTO word (wordname) VALUES ('World');
         INSERT INTO page (url, title) VALUES ('test1.com', 'title');
     `;
-        const select = `SELECT * FROM search;`;
-
         pool
-            .query(select, (err, table) => {
+            .query(insert, (err, table) => {
                 // print the result form the selected table.
-                console.log(table);
+                // console.log(table);
                 res.send(table.rows);
                 // pool.end();
             })
     }
-
 })
 
