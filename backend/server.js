@@ -49,7 +49,10 @@ app.get('/admin', (req, res) => {
     });
 
     const queryDB = () => {
-        const select = `SELECT * FROM search;`;
+        const select = `
+        
+        SELECT * FROM page;`
+        ;
         pool
             .query(select, (err, table) => {
                 // print the result form the selected table.
@@ -77,6 +80,7 @@ app.post('/someurl', (req, res) => {
     const insertDB = () => {
 
         const resultData = getData(URL_TO_CRAWL);
+        console.log(resultData);
         const insert = `
         
         INSERT INTO page (url, title, description, lastModified) VALUES (${resultData[0].url},${resultData[0].title},${resultData[0].description},${resultData[0].lastModified});
