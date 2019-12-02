@@ -26,11 +26,11 @@ process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 // password stored as environment variable.
 const PS = process.env.PS;
 const config = {
-    user: "pkgnjnqybwtacz",
+    user: "ugsbukmtazihqs",
     password: PS,
-    host: "ec2-107-22-228-141.compute-1.amazonaws.com",
+    host: "ec2-107-22-253-158.compute-1.amazonaws.com",
     port: 5432,
-    database: "d8qp223qobrp87",
+    database: "d5ikn1480r683h",
     ssl: true
 };
 const pool = new Pool(config);
@@ -79,7 +79,7 @@ app.post('/someurl', (req, res) => {
         const resultData = getData(URL_TO_CRAWL);
         const insert = `
         
-        INSERT INTO page (url, title, description, lastModified) VALUES (${resultData.url},${resultData.title},${resultData.description},${resultData.lastModified});
+        INSERT INTO page (url, title, description, lastModified) VALUES (${resultData[0].url},${resultData[0].title},${resultData[0].description},${resultData[0].lastModified});
     `;
         pool
             .query(insert, (err, table) => {
