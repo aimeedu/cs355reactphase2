@@ -1,6 +1,11 @@
-const {Pool, Client} = require("pg");
+const URL_TO_CRAWL = 'https://www.wikipedia.org/';
+
+const {Pool} = require("pg");
 const express = require("express");
 const app = express();
+const cheerio = require('cheerio');
+
+const axios = require('axios');
 
 // const router = require("express").Router;
 const port = process.env.PORT || 5000;
@@ -27,7 +32,7 @@ const config = {
     port: 5432,
     database: "d8qp223qobrp87",
     ssl: true
-}
+};
 const pool = new Pool(config);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
@@ -53,7 +58,7 @@ app.get('/admin', (req, res) => {
                 // pool.end();
             })
     }
-})
+});
 
 // web crawler data insert to DB using post or put method.
 app.post('/someurl', (req, res) => {
@@ -68,12 +73,13 @@ app.post('/someurl', (req, res) => {
         else {
             insertDB();
         }
-    })
+    });
     const insertDB = () => {
+
+        const resultData = getData(URL_TO_CRAWL);
         const insert = `
-        INSERT INTO word (wordname) VALUES ('Hello');
-        INSERT INTO word (wordname) VALUES ('World');
-        INSERT INTO page (url, title) VALUES ('test1.com', 'title');
+        
+        INSERT INTO page (url, title, description, lastModified) VALUES (${resultData.url},${resultData.title},${resultData.description},${resultData.lastModified});
     `;
         pool
             .query(insert, (err, table) => {
@@ -83,5 +89,32 @@ app.post('/someurl', (req, res) => {
                 // pool.end();
             })
     }
-})
+});
+
+
+const getData = (url) => axios.get(url).then((response) => {
+
+    if(response.status === 200) {
+
+        const html = response.data;
+
+        const $ = cheerio.load(html);
+
+
+
+        return {
+
+            url: url,
+
+            title: $('title').text(),
+
+            description: $('meta').filter((i, elem) => elem.attribs.name === 'description')[0].attribs.content,
+
+            lastModified: response.headers['last-modified']
+
+        }
+
+    }
+
+});
 
