@@ -6,7 +6,6 @@ class Admin extends Component {
     constructor(props){
         super(props);
         this.state = {
-            loading: true,
             results:[],
         }
     }
@@ -15,17 +14,12 @@ class Admin extends Component {
     async componentDidMount() {
         console.log('component has mounted.');
         const res = await fetch('/admin')
-        const data = await res.json();
-        const results = data;
+        const results = await res.json();
+        // const results = data;
         this.setState({
             results,
-            loading: false,
         })
     }
-        //     fetch('/admin')
-    //         .then(res => res.json())
-    //         .then(results => this.setState({results, loading: true}, () => console.log('results fetched..', results)))
-    // }
 
     render() {
 

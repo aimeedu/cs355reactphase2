@@ -24,7 +24,7 @@ const config = {
     user: "pkgnjnqybwtacz",
     password: PS,
     host: "ec2-107-22-228-141.compute-1.amazonaws.com",
-    post: 5432,
+    port: 5432,
     database: "d8qp223qobrp87",
     ssl: true
 }
@@ -57,6 +57,12 @@ app.get('/admin', (req, res) => {
 
 // web crawler data insert to DB using post or put method.
 app.post('/someurl', (req, res) => {
+
+
+    // data from the crawler ???
+
+
+
     pool.connect(err => {
         if (err) throw err;
         else {
