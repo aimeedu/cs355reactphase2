@@ -10,19 +10,27 @@ class Admin extends Component {
         }
     }
 
-    // make AJAX calls, query the data from the search table. http://localhost:3000/admin
+    // make AJAX calls, query the data from the search table. http://localhost:3000 or 5000/admin, both working
+    // as soon as you go to this page, the table will show.
     async componentDidMount() {
         console.log('component has mounted.');
-        const res = await fetch('/admin')
+        const res = await fetch('/admin');
         const results = await res.json();
-        // const results = data;
         this.setState({
             results,
         })
     }
 
-    render() {
+    indexing = async (e) => {
+        e.preventDefault();
+        const userInput = e.target.elements.userInput.value;
+        console.log(userInput);
+        console.log('Indexing Successfully! Data inserted in DB!');
+        //change location to home page.
+        window.location='/';
+    }
 
+    render() {
         const rows = this.state.results.map((result, i) => {
             return(
                 <tr key={i}>
@@ -38,10 +46,11 @@ class Admin extends Component {
             <div>
                 <h2>Indexing Launcher</h2>
 
-                <Form className="search">
-                    <FormControl className="mr-sm-1 searchBar" type="text" placeholder="Type a URL to be indexed." name="userInput"/>
+                <Form className="search" onSubmit={this.indexing}>
+                    <FormControl className="mr-sm-1 searchBar" type="url" placeholder="Type a URL to be indexed." name="userInput"/>
                     <Button id="searchBtn" variant="btn btn-light purple-btn" type="submit">Search</Button>
                 </Form>
+
                 <br/><br/>
                 <h3>User Search Histories</h3>
 
@@ -55,7 +64,6 @@ class Admin extends Component {
                         </tr>
                     </thead>
                     <tbody>
-
                     {rows}
                     </tbody>
                 </table>

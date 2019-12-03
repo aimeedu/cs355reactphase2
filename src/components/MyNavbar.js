@@ -26,7 +26,7 @@ const MyNavbar = (props) => {
 
                     <NavDropdown title="Search" id="search-dropdown">
                         <LinkContainer to="/file">
-                            <NavDropdown.Item>Search from a file</NavDropdown.Item>
+                            <NavDropdown.Item>Search From A File</NavDropdown.Item>
                         </LinkContainer>
                         <LinkContainer to="/google">
                             <NavDropdown.Item>Google Search</NavDropdown.Item>

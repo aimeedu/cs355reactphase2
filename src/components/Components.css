@@ -1,3 +1,9 @@
+
+label {
+    color: #ffbf67;
+    margin: 20px;
+}
+
 .myStyle{
     background-color: transparent;
     color: lavender;
@@ -21,7 +27,7 @@ h2 {
     padding: 7px;
     color: lavenderblush;
     white-space: pre-line;
-    text-align: center;
+    /*text-align: center;*/
     margin: 7px;
 }
 
@@ -106,7 +112,6 @@ h5 a:hover {
     /*border-radius: 20px;*/
     overflow-wrap: break-word;
 }
-
 
 h2 a {
     padding: 0px;
