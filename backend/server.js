@@ -1,6 +1,10 @@
-const {Pool, Client} = require("pg");
+const {Pool} = require("pg");
 const express = require("express");
 const app = express();
+
+const URL_TO_CRAWL = 'https://www.wikipedia.org/';
+const cheerio = require('cheerio');
+const axios = require('axios');
 
 // const router = require("express").Router;
 const port = process.env.PORT || 5000;
@@ -56,32 +60,47 @@ app.get('/admin', (req, res) => {
 })
 
 // web crawler data insert to DB using post or put method.
-app.post('/someurl', (req, res) => {
+// let urlvar, title, description, lastModified;
+// app.post('/someurl', (req, res) => {
+//     pool.connect(err => {
+//         if (err) throw err;
+//         else {
+//             insertDB();
+//         }
+//     });
+//     const insertDB = () => {
+//
+//         const resultData = getData(URL_TO_CRAWL);
+//         console.log(resultData);
+//         const insert = `
+//         INSERT INTO "page" ("url", "title", "description", "lastModified") VALUES ('${urlvar}','${title}','${description}','${lastModified}');
+//     `;
+//
+//         pool
+//             .query(insert, (err, table) => {
+//                 // print the result form the selected table.
+//                 // console.log(table);
+//                 res.send(table.rows);
+//                 // pool.end();
+//             })
+//     }
+// });
 
-
-    // data from the crawler ???
-
-
-
-    pool.connect(err => {
-        if (err) throw err;
-        else {
-            insertDB();
+const getData = (url) => axios.get(url).then((response) => {
+    let urlvar, title, description, lastModified;
+    if(response.status === 200) {
+        const html = response.data;
+        const $ = cheerio.load(html);
+        urlvar = url;
+        title = $('title').text();
+        description = $('meta').filter((i, elem) => elem.attribs.name === 'description')[0].attribs.content;
+        lastModified = response.headers['last-modified'];
+    }
+    pool.query('INSERT INTO page (url, title, description, lastModified) VALUES ($1, $2, $3, $4)', [urlvar, title, description, lastModified], (error, results) => {
+        if (error) {
+            throw error
         }
     })
-    const insertDB = () => {
-        const insert = `
-        INSERT INTO word (wordname) VALUES ('Hello');
-        INSERT INTO word (wordname) VALUES ('World');
-        INSERT INTO page (url, title) VALUES ('test1.com', 'title');
-    `;
-        pool
-            .query(insert, (err, table) => {
-                // print the result form the selected table.
-                // console.log(table);
-                res.send(table.rows);
-                // pool.end();
-            })
-    }
-})
+});
 
+getData(URL_TO_CRAWL);
