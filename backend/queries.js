@@ -23,11 +23,14 @@ const getSearchTable = (req, res) => {
     const select = `SELECT * FROM search;`;
     pool.query(select, (err, result) => {
             // print the result form the selected table.
-            // console.log(result);
+            // console.log(result.rows);
             res.send(result.rows);
         })
 }
 
+const insertTest = () => {
+    const string = `SELECT * FROM search;`;
+}
 
 //fix the method
 const insertData = (url) => axios.get(url).then((response) => {
