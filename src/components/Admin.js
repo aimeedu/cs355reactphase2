@@ -64,7 +64,7 @@ class Admin extends Component {
                 <h5>Admin: Indexing Launcher
                     This is an Admin screen in which the user can type/paste a URL to be indexed, passing it to the Indexing Engine mentioned above. <br/>
                     Alternatively, one can add an option to the previously created screens that for any search result in Phase 2, one clicks a button to index selected items.
-                    </h5>
+                </h5>
             </div>
         );
     }
