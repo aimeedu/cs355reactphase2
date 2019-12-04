@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import './Admin.css';
 import {Button, Form, FormControl} from "react-bootstrap";
+import axios from 'axios';
+
 
 class Admin extends Component {
     constructor(props){
         super(props);
         this.state = {
             results:[],
+            isIndexed: false,
+            count:0
         }
-    }
-
-    async componentDidMount() {
-        console.log('component has mounted.');
     }
 
     // make AJAX calls, query the data from the search table. http://localhost:3000 or 5000/admin, both working
@@ -24,13 +24,36 @@ class Admin extends Component {
         })
     }
 
-    indexing = async (e) => {
+    indexing = (e) => {
         e.preventDefault();
-        const userInput = e.target.elements.userInput.value;
-        console.log(userInput);
-        console.log('Indexing Successfully! Data inserted in DB!');
-        //change location to home page.
-        window.location='/';
+        // get the user input url
+        const inputURL = e.target.elements.userInput.value;
+        console.log(inputURL);
+
+        //pass this url to the post function.
+        axios.post('/admin', {inputURL})
+            .then((res)=>{
+                console.log(res.data);
+                console.log('Indexing Successfully! Data inserted in DB!');
+            })
+        this.setState({
+            isIndexed: true,
+            count: this.state.count+1
+        })
+
+    //     const request = new Request('http://localhost:3000/admin', {
+    //         method: 'POST',
+    //         headers: new Headers({'Content-Type': 'application/json'}),
+    //         body: inputURL
+    //     })
+    //     // //xmlhttprequest
+    //     fetch(request)
+    //         .then((res) => {
+    //             res.json()
+    //                 .then((data)=>{
+    //                     console.log(data)
+    //                 })
+    //         })
     }
 
     render() {
@@ -49,11 +72,12 @@ class Admin extends Component {
         return (
             <div>
                 <h2>Indexing Launcher</h2>
-
+                <h3>{this.state.isIndexed?`Data inserted into DB!  Indexing Count: ${this.state.count}`:null}</h3>
                 <Form className="search" onSubmit={this.indexing}>
                     <FormControl className="mr-sm-1 searchBar" type="url" placeholder="Type a URL to be indexed." name="userInput"/>
                     <Button id="searchBtn" variant="btn btn-light purple-btn" type="submit">Search</Button>
                 </Form>
+
 
                 <br/><br/>
 
@@ -74,11 +98,6 @@ class Admin extends Component {
                     </tbody>
                 </table>
                 <br/>
-
-                <h5>Admin: Indexing Launcher
-                    This is an Admin screen in which the user can type/paste a URL to be indexed, passing it to the Indexing Engine mentioned above. <br/>
-                    Alternatively, one can add an option to the previously created screens that for any search result in Phase 2, one clicks a button to index selected items.
-                </h5>
             </div>
         );
     }

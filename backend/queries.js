@@ -34,20 +34,20 @@ const insertTest = () => {
 
 //fix the method
 const insertData = (url) => axios.get(url).then((response) => {
-    let urlvar, title, description, lastModified;
-    if(response.status === 200) {
-        const html = response.data;
-        const $ = cheerio.load(html);
-        urlvar = url;
-        title = $('title').text();
-        description = $('meta').filter((i, elem) => elem.attribs.name === 'description')[0].attribs.content;
-        lastModified = response.headers['last-modified'];
-    }
-    pool.query('INSERT INTO page (url, title, description, lastModified) VALUES ($1, $2, $3, $4)', [urlvar, title, description, lastModified], (error, results) => {
-        if (error) {
-            throw error
-        }
-    })
+    // let urlvar, title, description, lastModified;
+    // if(response.status === 200) {
+    //     const html = response.data;
+    //     const $ = cheerio.load(html);
+    //     urlvar = url;
+    //     title = $('title').text();
+    //     description = $('meta').filter((i, elem) => elem.attribs.name === 'description')[0].attribs.content;
+    //     lastModified = response.headers['last-modified'];
+    // }
+    // pool.query('INSERT INTO page (url, title, description, lastModified) VALUES ($1, $2, $3, $4)', [urlvar, title, description, lastModified], (error, results) => {
+    //     if (error) {
+    //         throw error
+    //     }
+    // })
 });
 
 module.exports = {
