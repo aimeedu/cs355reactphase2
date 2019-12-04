@@ -10,14 +10,17 @@ class Admin extends Component {
         }
     }
 
-    // make AJAX calls, query the data from the search table. http://localhost:3000 or 5000/admin, both working
-    // as soon as you go to this page, the table will show.
     async componentDidMount() {
         console.log('component has mounted.');
+    }
+
+    // make AJAX calls, query the data from the search table. http://localhost:3000 or 5000/admin, both working
+    // as soon as you click on fetch data button, the table will show.
+    fetchHistories = async () => {
         const res = await fetch('/admin');
         const results = await res.json();
         this.setState({
-            results,
+            results
         })
     }
 
@@ -31,6 +34,7 @@ class Admin extends Component {
     }
 
     render() {
+
         const rows = this.state.results.map((result, i) => {
             return(
                 <tr key={i}>
@@ -52,7 +56,9 @@ class Admin extends Component {
                 </Form>
 
                 <br/><br/>
-                <h3>User Search Histories</h3>
+
+                   <h3>User Search Histories <button type="button" className="btn btn-outline-light" onClick={this.fetchHistories}>Fetch Data</button>
+                   </h3>
 
                 <table className="">
                     <thead>
