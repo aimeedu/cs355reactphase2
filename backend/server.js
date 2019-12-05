@@ -92,9 +92,9 @@ request(URL, function (err, res, body) {
     else {
         let arr =[];
         let $ = cheerio.load(body);
-        let txt = $('body').text();
+        let txt = $('body').text(); //Get all text from body tags of html
 
-        arr.push(txt);
+        arr.push(txt); //todo: Do we need this?
 
         fs.writeFile('data.txt', arr, function (err) {
             if(err) {
