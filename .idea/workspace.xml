@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="acabbfe8-1ccf-4d35-bef9-ec0e4c0ee400" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/cs355react.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cs355react.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/queries.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -121,6 +118,18 @@
       <workItem from="1574612382018" duration="11811000" />
       <workItem from="1574696847518" duration="6516000" />
       <workItem from="1575302278047" duration="8975000" />
+      <workItem from="1575578025347" duration="2370000" />
+      <workItem from="1575580678884" duration="130000" />
+      <workItem from="1575580815097" duration="336000" />
+      <workItem from="1575581174356" duration="168000" />
+      <workItem from="1575581359507" duration="3115000" />
+      <workItem from="1575585184179" duration="155000" />
+      <workItem from="1575585343483" duration="329000" />
+      <workItem from="1575585690530" duration="349000" />
+      <workItem from="1575586053937" duration="343000" />
+      <workItem from="1575586430572" duration="64000" />
+      <workItem from="1575586508438" duration="1493000" />
+      <workItem from="1575588682668" duration="895000" />
     </task>
     <task id="LOCAL-00001" summary="First todocommit">
       <created>1575572024218</created>
@@ -129,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575572024219</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added Pizon's function and added default values into the database">
+      <created>1575577693992</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1575577693992</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +169,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First todocommit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First todocommit" />
+    <MESSAGE value="Added Pizon's function and added default values into the database" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Pizon's function and added default values into the database" />
   </component>
 </project>

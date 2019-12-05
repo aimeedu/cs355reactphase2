@@ -16,17 +16,18 @@ const config = {
     port: 5432,
     database: "d8qp223qobrp87",
     ssl: true
-}
+};
 const pool = new Pool(config);
 
 const getSearchTable = (req, res) => {
     const select = `SELECT * FROM search;`;
     pool.query(select, (err, result) => {
-            // print the result form the selected table.
-            // console.log(result.rows);
-            res.send(result.rows);
-        })
-}
+        // print the result form the selected table.
+        // console.log(result.rows);
+        res.send(result.rows);
+    });
+    pool.end();
+};
 
 
 //fix the method
@@ -50,4 +51,4 @@ const insertData = (url) => axios.get(url).then((response) => {
 module.exports = {
     getSearchTable,
     insertData,
-}
+};
