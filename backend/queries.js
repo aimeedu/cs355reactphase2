@@ -1,6 +1,6 @@
 const {Pool} = require("pg");
 require('dotenv').config();
-const URL_TO_CRAWL = 'https://apple.com';
+const URL_TO_CRAWL = 'https://www.atptour.com/';
 const cheerio = require('cheerio');
 const axios = require('axios');
 
