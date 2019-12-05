@@ -9,13 +9,21 @@ class SearchEngine extends Component {
         this.state = {
             caseInsensitive: false,
             partialMatch: false,
+            term: null,
         }
     }
 
     search = async (e) => {
         e.preventDefault();
-        const userInput = e.target.elements.userInput.value;
-        console.log(userInput);
+        const term = e.target.elements.userInput.value;
+        console.log(term);
+        this.setState({
+            term
+        })
+
+        /** fetch something from the database page_word table?
+         * what are we displaying here?
+         * insert into the search table*/
     }
 
     checkCase = () => {
@@ -47,7 +55,7 @@ class SearchEngine extends Component {
                     <FormControl className="mr-sm-1 searchBar" type="text" placeholder="Type a word to Search." name="userInput"/>
                     <Button id="searchBtn" variant="btn btn-light purple-btn" type="submit">Search</Button>
                 </Form>
-                <h3> Search Result: </h3>
+                <h3> Search Result: {this.state.term}</h3>
 
             </div>
         )

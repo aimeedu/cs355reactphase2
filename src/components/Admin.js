@@ -72,7 +72,7 @@ class Admin extends Component {
         return (
             <div>
                 <h2>Indexing Launcher</h2>
-                <h3>{this.state.isIndexed?`Data inserted into DB!  Indexing Count: ${this.state.count}`:null}</h3>
+                <h3>{this.state.isIndexed?`Data inserted into DB! Indexing Count: ${this.state.count}`:null}</h3>
                 <Form className="search" onSubmit={this.indexing}>
                     <FormControl className="mr-sm-1 searchBar" type="url" placeholder="Type a URL to be indexed." name="userInput"/>
                     <Button id="searchBtn" variant="btn btn-light purple-btn" type="submit">Search</Button>

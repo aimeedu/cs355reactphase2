@@ -28,9 +28,6 @@ const getSearchTable = (req, res) => {
         })
 }
 
-const insertTest = () => {
-    const string = `SELECT * FROM search;`;
-}
 
 //fix the method
 const insertData = (url) => axios.get(url).then((response) => {

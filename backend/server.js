@@ -1,8 +1,11 @@
+const request = require('request');
+const fs = require('fs');
+
 const db = require('./queries')
 const express = require("express");
 const app = express();
 
-const URL_TO_CRAWL = 'https://www.wikipedia.org/';
+
 const cheerio = require('cheerio');
 const axios = require('axios');
 const {Pool} = require("pg");
@@ -43,7 +46,6 @@ const config = {
 const pool = new Pool(config);
 // move to queries.js later --------------------------------------------------------
 
-
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
 // GET method route
@@ -55,7 +57,7 @@ app.post('/admin', (req,res)=>{
     //print the url in the terminal
     let title, description, lastModified;
     // need to fix the web crawler. for some website, it can't extracting data from certain field. try apple.com
-    axios.get(getURL).then(res => {
+    axios.get(getURL).then((res) => {
         if(res.status === 200) {
             const html = res.data;
             const $ = cheerio.load(html);
@@ -73,3 +75,35 @@ app.post('/admin', (req,res)=>{
     })
     })
 });
+
+// get search result.
+app.get('/custom', (req, res) => {
+
+})
+
+// the crawler gets all the plain text from the body of a web page --------------------------------------------------------
+const URL = 'https://en.wikipedia.org/wiki/London';
+// write to a txt file. Pizon's code can parse text file, but need to clean up the file first.
+// the txt file is going to output under the backend folder.
+request(URL, function (err, res, body) {
+    if(err) {
+        console.log(err, "error occured while hitting URL");
+    }
+    else {
+        let arr =[];
+        let $ = cheerio.load(body);
+        let txt = $('body').text();
+
+        arr.push(txt);
+
+        fs.writeFile('data.txt', arr, function (err) {
+            if(err) {
+                console.log(err);
+            }
+            else{
+                console.log("success");
+            }
+        });
+    }
+});
+
