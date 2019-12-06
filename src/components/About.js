@@ -16,7 +16,7 @@ const About = () => {
             {
                 msg === "contact" ?
                     <h2><a href="mailto:aimeedu11@gmail.com?subject=Contact Developer"target="_blank">Contact Us</a></h2>
-                    : <h2>Developers: <br/>{ "{ Fengzhang Du,  Yaniv Bronshtein }" }<br/>{ "{ Mohanad Osman,  Adam Binder }" }<br/></h2>
+                    : <h2>Developers: <br/>{ "{ Fengzhang Du,  Yaniv Bronshtein }" }<br/>{ "{ Mohanad Osman,  Adam Binder }" }<br/>{ "{ Pizon Shetu }" }</h2>
             }
         </div>
     )

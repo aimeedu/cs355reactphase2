@@ -86,27 +86,26 @@ const URL = 'https://en.wikipedia.org/wiki/London';
 // write to a txt file. Pizon's code can parse text file, but need to clean up the file first.
 // the txt file is going to output under the backend folder.
 
-request(URL, function (err, res, body) {
+const countWords = request(URL, function (err, res, body) {
     if(err) {
         console.log(err, "error occured while hitting URL");
     }
     else {
         // let arr =[];
         let $ = cheerio.load(body);
-        let t1 = $('body').text();
-        let t2 =["hello my name is aimee, hello my name is aimee"]
+        let txt = $('body').text();
         // arr.push(txt);
-        setup(t1);
+        setup(txt);
         console.log(counts);
 
-        fs.writeFile('data.txt', t1, function (err) {
-            if(err) {
-                console.log(err);
-            }
-            else{
-                console.log("success");
-            }
-        });
+        // fs.writeFile('data.txt', txt, function (err) {
+        //     if(err) {
+        //         console.log(err);
+        //     }
+        //     else{
+        //         console.log("success");
+        //     }
+        // });
     }
 });
 
@@ -116,9 +115,8 @@ function setup (txt){
     // let allwords = txt.join("\n");
     let tokens  = txt.split(/\W+/);
     for (let i = 0; i< tokens.length; i++){
-        let word = tokens[i]//.toLowerCase();
+        let word = tokens[i]
         if (!/\d+/.test(word)) {
-
             if (counts[word] === undefined) {
                 counts[word] = 1;
                 keys.push(word);
@@ -127,14 +125,12 @@ function setup (txt){
             }
         }
     }
-
     // function compare(a,b){
     //     var countA = counts[a];
     //     var countB = counts[b];
     //     return countB - countA;
     // }
     // keys.sort(compare);
-
 }
 
 
