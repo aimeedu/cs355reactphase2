@@ -60,37 +60,36 @@ app.listen(port, () => console.log(`Server is running on port ${port}`));
 app.get('/admin', db.getSearchTable);
 
 
-
+let title, description, lastModified;
+let getURL;
+let counts = {};
+let keys = [];
+/** We create an array parsedWords which stores the words into an array
+ * which will be used later to insert into the database based on their indices */
+let parsedWords = [];
 
 app.post('/admin', (req,res)=>{
-  const getURL = req.body.inputURL;
+  getURL = req.body.inputURL;
   //print the url in the terminal
-  let title, description, lastModified;
   // need to fix the web crawler. for some website, it can't extracting data from certain field. try apple.com
   axios.get(getURL).then((res) => {
     if(res.status === 200) {
       const html = res.data;
       const $ = cheerio.load(html);
-      console.log("Printing Dollar sign");
-      console.log($);
+
       title = $('title').text();
       description = $('meta').filter((i, elem) => elem.attribs.name === 'description')[0].attribs.content;
       lastModified = res.headers['last-modified'];
     }
-    console.log("Res.status" + res.status);
     /* If the description is unavailable set the description to the title */
     if (description == null)
       description = title;
     /*If the lastModified is unavailable set the lastModified to the current time stamp */
     if (lastModified == null)
       lastModified = Date.now();
-    pool.query('INSERT INTO page (url, title, description, lastModified) VALUES ($1, $2, $3, $4)', [getURL, title, description, lastModified], (error) => {
-      if (error) {
-        throw error
-      }
-    });
 
-    pool.end();
+
+    // pool.end();
   })
 });
 
@@ -132,21 +131,39 @@ request(URL, function (err, res, body) {
 
     // arr.push(txt);
     setup(txt);
-    console.log(counts);
 
-    fs.writeFile('data.txt', txt, function (err) {
-      if(err) {
-        console.log(err);
-      }
-      else{
-        console.log("success");
-      }
-    });
+    // pool.query('INSERT INTO page (url, title, description, lastModified) VALUES ($1, $2, $3, $4)', [getURL, title, description, lastModified], (error) => {
+    //   if (error) {
+    //     throw error
+    //   }
+    // });
+    console.log("PARSED WORDS!!!");
+    console.log(parsedWords);
+
+    // Loops through all the words in the array of parsedWords for each word in their indices
+    // It inserts into the database
+    for (let i = 0; i < parsedWords.length; i++) {
+      pool.query('INSERT INTO word (wordName) VALUES ($1)', [parsedWords[i]], (error) => {
+        if (error) {
+          throw error
+        }
+      });
+    }
+
+
+    //todo: commented out Dec 5 7.03 pm
+    // fs.writeFile('data.txt', txt, function (err) {
+    //   if(err) {
+    //     console.log(err);
+    //   }
+    //   else{
+    //     console.log("success");
+    //   }
+    // });
   }
 });
 
-let counts = {};
-let keys = [];
+
  function setup (txt){
    /* This writes the word individually then the
      next word is written in a new line */
@@ -164,6 +181,7 @@ let keys = [];
          // Since the word has appeared for the first time we make count = 1.
          counts[word] = 1;
          keys.push(word.trim());
+         parsedWords.push(word);
        } else {
          counts[word] = counts[word] + 1;
         }

@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="acabbfe8-1ccf-4d35-bef9-ec0e4c0ee400" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/data.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/queries.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
     </list>
@@ -129,7 +128,14 @@
       <workItem from="1575586053937" duration="343000" />
       <workItem from="1575586430572" duration="64000" />
       <workItem from="1575586508438" duration="1493000" />
-      <workItem from="1575588682668" duration="895000" />
+      <workItem from="1575588682668" duration="2757000" />
+      <workItem from="1575591669356" duration="159000" />
+      <workItem from="1575591834847" duration="858000" />
+      <workItem from="1575592717947" duration="385000" />
+      <workItem from="1575593123561" duration="190000" />
+      <workItem from="1575593321425" duration="259000" />
+      <workItem from="1575593586384" duration="255000" />
+      <workItem from="1575593845490" duration="270000" />
     </task>
     <task id="LOCAL-00001" summary="First todocommit">
       <created>1575572024218</created>
@@ -145,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575577693992</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Kinda got it working">
+      <created>1575589716435</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1575589716435</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,6 +183,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First todocommit" />
     <MESSAGE value="Added Pizon's function and added default values into the database" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Pizon's function and added default values into the database" />
+    <MESSAGE value="Kinda got it working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Kinda got it working" />
   </component>
 </project>

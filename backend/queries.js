@@ -26,7 +26,7 @@ const getSearchTable = (req, res) => {
         // console.log(result.rows);
         res.send(result.rows);
     });
-    pool.end();
+    // pool.end();
 };
 
 
