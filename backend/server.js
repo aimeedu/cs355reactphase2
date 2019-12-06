@@ -69,7 +69,10 @@ let keys = [];
 let parsedWords = [];
 
 app.post('/admin', (req,res)=>{
+  console.log("Before URL");
   getURL = req.body.inputURL;
+  console.log("After URL");
+  console.log("getURL" + getURL);
   //print the url in the terminal
   // need to fix the web crawler. for some website, it can't extracting data from certain field. try apple.com
   axios.get(getURL).then((res) => {
@@ -85,11 +88,25 @@ app.post('/admin', (req,res)=>{
     if (description == null)
       description = title;
     /*If the lastModified is unavailable set the lastModified to the current time stamp */
-    if (lastModified == null)
-      lastModified = Date.now();
 
 
-    // pool.end();
+    /* We retrieve the current time from the webpage when it was last modified, if the page
+    * does not have a lastModified value hence it is null we have two cases
+    * where if it is null we allow it to be a default value to be Current_Timestamp
+    * else it is the default time-stamp of the webpage's host time*/
+    if (lastModified != null) {
+      pool.query('INSERT INTO page (url, title, description, lastModified) VALUES ($1, $2, $3, $4)', [getURL, title, description, lastModified], (error) => {
+        if (error) {
+          throw error
+        }
+      });
+    } else {
+      pool.query('INSERT INTO page (url, title, description, lastModified) VALUES ($1, $2, $3, CURRENT_TIMESTAMP)', [getURL, title, description], (error) => {
+        if (error) {
+          throw error
+        }
+      });
+    }
   })
 });
 
@@ -132,13 +149,7 @@ request(URL, function (err, res, body) {
     // arr.push(txt);
     setup(txt);
 
-    // pool.query('INSERT INTO page (url, title, description, lastModified) VALUES ($1, $2, $3, $4)', [getURL, title, description, lastModified], (error) => {
-    //   if (error) {
-    //     throw error
-    //   }
-    // });
-    console.log("PARSED WORDS!!!");
-    console.log(parsedWords);
+
 
     // Loops through all the words in the array of parsedWords for each word in their indices
     // It inserts into the database
