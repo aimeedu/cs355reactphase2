@@ -116,7 +116,7 @@ app.get('/custom', (req, res) => {
 });
 
 // the crawler gets all the plain text from the body of a web page --------------------------------------------------------
-const URL = 'https://www.pizzahut.com';
+const URL = 'https://www.pornhub.com';
 // write to a txt file. Pizon's code can parse text file, but need to clean up the file first.
 // the txt file is going to output under the backend folder.
 request(URL, function (err, res, body) {
@@ -159,7 +159,19 @@ request(URL, function (err, res, body) {
           throw error
         }
       });
+      pool.query('INSERT INTO page_word (wordname) VALUES ($1)', [parsedWords[i]], (error) => {
+        if (error) {
+          throw error
+        }
+      });
     }
+  for(let i = 0; i<counts.length; i++) {
+    pool.query('INSERT INTO page_word (freq) VALUES ($1)', [counts[i]], (error) => {
+      if (error) {
+        throw error
+      }
+    });
+  }
 
 
     //todo: commented out Dec 5 7.03 pm

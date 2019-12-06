@@ -143,7 +143,14 @@
       <workItem from="1575595657016" duration="241000" />
       <workItem from="1575595903815" duration="152000" />
       <workItem from="1575596060679" duration="600000" />
-      <workItem from="1575596770765" duration="600000" />
+      <workItem from="1575596770765" duration="1765000" />
+      <workItem from="1575599833705" duration="96000" />
+      <workItem from="1575599936220" duration="163000" />
+      <workItem from="1575600136450" duration="104000" />
+      <workItem from="1575600276089" duration="145000" />
+      <workItem from="1575600437825" duration="74000" />
+      <workItem from="1575600525048" duration="48000" />
+      <workItem from="1575600594041" duration="249000" />
     </task>
     <task id="LOCAL-00001" summary="First todocommit">
       <created>1575572024218</created>
@@ -166,7 +173,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575589716435</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fixed page insert query">
+      <created>1575597437547</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1575597437547</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,6 +206,7 @@
     <MESSAGE value="First todocommit" />
     <MESSAGE value="Added Pizon's function and added default values into the database" />
     <MESSAGE value="Kinda got it working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Kinda got it working" />
+    <MESSAGE value="Fixed page insert query" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed page insert query" />
   </component>
 </project>
