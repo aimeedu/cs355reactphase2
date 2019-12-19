@@ -127,7 +127,7 @@ class SearchGoogle extends Component {
             </div>
 
         );
-    }
+    }//
 }
 
 export default SearchGoogle;
