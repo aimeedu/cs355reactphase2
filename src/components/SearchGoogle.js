@@ -86,7 +86,7 @@ class SearchGoogle extends Component {
         return (
             <div className="level1">
 
-                <h2>Google Custom Search API</h2>
+                <h2>Google API</h2>
                 {/*<h3 id="searchRes">You have {this.state.data.length} search results.</h3>*/}
 
                 {/*<form inline className="search" onSubmit={this.search}>*/}
@@ -96,7 +96,7 @@ class SearchGoogle extends Component {
 
                 <Form className="search" onSubmit={this.search}>
                     <FormControl className="mr-sm-1 searchBar" type="text" placeholder="Google" name="userInput"/>
-                    <Button id="searchBtn" variant="btn btn-light purple-btn" type="submit">Search</Button>
+                    <Button id="searchBtn" variant="btn btn-warning" type="submit">Search</Button>
                 </Form>
                 {/*<form className="search" onSubmit={this.search}>*/}
                 {/*    <input className="mr-sm-2 searchBar" type="text" placeholder="Google" name="userInput"/>*/}

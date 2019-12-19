@@ -1,25 +1,25 @@
 .myStyle{
     background-color: transparent;
-    color: lavender;
+    color: #fcce00;
 }
 
 .navbar-dark .navbar-brand {
-    color: lavenderblush;
+    color: #fcce00;
     font-size: x-large;
 }
 .navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show>.nav-link {
-    color: lavenderblush;
+    color: #fcce00;
     font-size: large;
 }
 
 .navbar-dark .navbar-nav .nav-link {
-    color: lavenderblush;
+    color: #fcce00;
     font-size: large;
 }
 
 h2 {
     padding: 7px;
-    color: lavenderblush;
+    color: #fcce00;
     white-space: pre-line;
     text-align: center;
     margin: 7px;
@@ -37,11 +37,11 @@ h2 {
 /*    color: mediumpurple;*/
 /*    border: 1px solid mediumpurple;*/
 /*}*/
-.purple-btn {
-    background-color: mediumpurple;
-    color: lavenderblush;
-    border: 1px solid mediumpurple;
-}
+/*.purple-btn {*/
+/*    background-color: mediumpurple;*/
+/*    color: lavenderblush;*/
+/*    border: 1px solid mediumpurple;*/
+/*}*/
 
 #searchRes {
     text-align: center;
@@ -56,15 +56,15 @@ h3, h4 {
 
 h5 {
     text-align: left;
-    color: lavenderblush;
+    color: #fcce00;
 }
-h5 a {
-    color: #ffacb6;
+/*h5 a {*/
+/*    color: #ffacb6;*/
 
-}
-h5 a:hover {
-    color: #5cc6e3;
-}
+/*}*/
+/*h5 a:hover {*/
+/*    color: #5cc6e3;*/
+/*}*/
 
 .search, .downloadFile {
     /*text-align: center;*/
@@ -102,26 +102,26 @@ h5 a:hover {
     border: none;
     /*border-radius: 20px;*/
     padding: 25px;
-    background: rgba(147, 157, 255, 0.2);
+    background: floralwhite;
     overflow-wrap: break-word;
 }
 
 
 h2 a {
     padding: 0px;
-    color: #ffd2bc;
+    color: #fcce00;
     white-space: pre-line;
     text-align: center;
     /*border-style: wave;*/
-    border: 6px solid #ffd2bc;
-    border-radius: 20px;
+    border: 6px solid #fcce00;
+    /*border-radius: 20px;*/
     padding: 5px;
 }
 
 h2 a:hover{
     text-decoration: none;
-    color: lightpink;
-    border: 7px solid lightpink;
+    color: #fcce00;
+    border: 7px solid #fcce00;
 }
 
 .email{

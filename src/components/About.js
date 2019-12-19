@@ -15,8 +15,9 @@ const About = () => {
         <div className="level1 email">
             {
                 msg === "contact" ?
-                    <h2><a href="mailto:aimeedu11@gmail.com?subject=Contact Developer"target="_blank">Contact Us</a></h2>
-                    : <h2>{ "{ Fengzhang Du }" } <br/> This is my first web page!</h2>
+                    <h2><a href="mailto:yanbron96@gmail.com ?subject=Contact Developer"target="_blank">Contact Us</a></h2>
+                    : <h2>Yaniv Bronshtein
+                        Yaniv Bronshtein is an aspiring Software Developer seeking to further his skills in front end development for the CS 355 group project</h2>
             }
         </div>
     )

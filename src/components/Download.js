@@ -130,10 +130,10 @@ class Download extends Component {
             <div>
                 <form className="downloadFile" onSubmit={this.downloadFile}>
                     <div id="selector">
-                        <button id="selectall" className="btn btn-light purple-btn mr-sm-1" type="button" onClick={this.selectAll}>Select All</button>
-                        <button id="deselectall" className="btn btn-light purple-btn" type="button" onClick={this.deselectAll}>Deselect All</button>
+                        <button id="selectall" className="btn btn-warning mr-sm-1" type="button" onClick={this.selectAll}>Select All</button>
+                        <button id="deselectall" className="btn btn-warning" type="button" onClick={this.deselectAll}>Deselect All</button>
                     </div>
-                        <button id="download" className="btn btn-light mr-sm-1" type="submit">Download</button>
+                        <button id="download" className="btn btn-warning mr-sm-1" type="submit">Download</button>
                         <input id="fileName" className="form-control mr-sm-1" type="text" placeholder="File Name" name="input" required="required"/>
                         <select name="options" id="fileType" className="custom-select" required="required">
                             <option value=".json">.JSON</option>

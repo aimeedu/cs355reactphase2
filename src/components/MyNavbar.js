@@ -8,7 +8,7 @@ const MyNavbar = (props) => {
     return (
         <Navbar collapseOnSelect="true" variant="dark" expand="lg" className="myStyle">
             <LinkContainer to="/">
-                <Navbar.Brand>CS355</Navbar.Brand>
+                <Navbar.Brand>SARA</Navbar.Brand>
             </LinkContainer>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">

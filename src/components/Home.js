@@ -5,7 +5,7 @@ const style = {
 
 const Home = () => {
     return (
-        <div style={style}><h2>This is my home page for CS 355 !</h2></div>
+        <div style={style}><h2>Introducing SARA, your favorite Search and Reporting Application!</h2></div>
     )
 }
 export default Home;
